@@ -1,12 +1,16 @@
 from flask import request
 
+from retrievers import linkedin, github
+
+
+
 '''
 Interfaces to external APIs
 '''
 
 def linkedin(item):
     if item == "profile":
-        if request.method == "GET":
+        if request.method red names== "GET":
             return "GET YOUR PROFILE!"
 
     else: # Unsupported
