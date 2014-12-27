@@ -33,6 +33,9 @@ def github(item):
 
 def not_implemented(ext_api_name):
     status = 501
+
+    # jsonify() returns a Flask Response object
+    # http://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify
     resp = jsonify({
             "api"    : ext_api_name,
             "status" : status,
