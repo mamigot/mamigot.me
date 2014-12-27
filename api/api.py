@@ -12,5 +12,8 @@ it to a function in ext_controller.
 '''
 # The supported features from each external interface are
 # defined in the functions within the controller.
-api.add_url_rule('/linkedin/<string:item>', view_func = ext_controller.linkedin)
-api.add_url_rule('/github/<string:item>', view_func = ext_controller.github)
+api.add_url_rule('/linkedin/<string:item>',
+                view_func = ext_controller.linkedin)
+
+api.add_url_rule('/github/<string:item>',
+                view_func = ext_controller.github)
