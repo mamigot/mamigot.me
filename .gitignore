@@ -1,1 +1,4 @@
+# Sensitive information such as API keys, etc. across repo
+secret.py
+
 *.pyc
