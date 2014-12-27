@@ -25,9 +25,12 @@ def get_client():
 def get_full_profile():
     client = get_client()
 
-    fields = ['positions', 'skills', 'honors-awards', 'courses']
-    st = ",".join(fields)
+    # Select fields from:
+    # https://developer.linkedin.com/documents/profile-fields
+    fields = [  'first-name', 'last-name', 'headline', 'location',
+                'positions', 'skills', 'honors-awards', 'courses'  ]
 
+    st = ",".join(fields)
     url = "https://api.linkedin.com/v1/people/~:(" + st + ")?format=json"
 
     # Call LinkedIn to retrieve profile
