@@ -1,8 +1,6 @@
-from flask import request
+from flask import Response, json, jsonify
 
-from retrievers import linkedin, github
-
-
+from retrievers import rlinkedin, rgithub
 
 '''
 Interfaces to external APIs
@@ -10,16 +8,36 @@ Interfaces to external APIs
 
 def linkedin(item):
     if item == "profile":
-        if request.method red names== "GET":
-            return "GET YOUR PROFILE!"
+        content, status = rlinkedin.get_full_profile()
 
-    else: # Unsupported
-        return "unsupported"
+        if status != 200:
+            js = json.loads(content) # Access error message from LinkedIn
+            msg = js["message"]
+            content = json.dumps({
+                        "api" : "linkedin",
+                        "error" : msg,
+                        "status" : status,
+                    })
+
+        return Response(content, status=status, mimetype='application/json')
+
+    else: return not_implemented("linkedin")
 
 
 def github(item):
     if item == "repos":
         return "THESE ARE YOUR REPOS!"
 
-    else: # Unsupported
-        return "unsupported"
+    else: return not_implemented("github")
+
+
+def not_implemented(ext_api_name):
+    status = 501
+    resp = jsonify({
+            "api"    : ext_api_name,
+            "status" : status,
+            "error"  : "This feature is not implemented.",
+        })
+
+    resp.status_code = status
+    return resp
