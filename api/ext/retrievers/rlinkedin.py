@@ -1,14 +1,13 @@
 import oauth2 as oauth
-
-from secret import linkedin
+from secret import slinkedin
 
 
 def get_client():
     # Keys and secrets from app registration
-    consumer_key    =   linkedin['consumer_key']
-    consumer_secret =   linkedin['consumer_secret']
-    user_token      =   linkedin['user_token']
-    user_secret     =   linkedin['user_secret']
+    consumer_key    = slinkedin['consumer_key']
+    consumer_secret = slinkedin['consumer_secret']
+    user_token      = slinkedin['user_token']
+    user_secret     = slinkedin['user_secret']
 
     # Consumer object
     consumer = oauth.Consumer(consumer_key, consumer_secret)
