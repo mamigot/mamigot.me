@@ -1,3 +1,4 @@
+from flask import json
 import oauth2 as oauth
 from secret import slinkedin
 
@@ -34,5 +35,10 @@ def get_full_profile():
 
     # Call LinkedIn to retrieve profile
     resp, content = client.request(url, "GET")
+    js = json.loads(content) # Convert to dictionary
 
-    return content, resp.status
+    if resp.status == 200:
+        return { "content" : js }, resp.status
+
+    else: # Return informative error message as dictionary
+        return { "error message" : js["message"] }, resp.status
