@@ -1,5 +1,4 @@
 from flask import Response, json, jsonify
-
 from retrievers import rlinkedin, rgithub
 
 '''
@@ -10,14 +9,9 @@ def linkedin(item):
     if item == "profile":
         content, status = rlinkedin.get_full_profile()
 
-        if status != 200:
-            js = json.loads(content) # Access error message from LinkedIn
-            msg = js["message"]
-            content = json.dumps({
-                        "api" : "linkedin",
-                        "error" : msg,
-                        "status" : status,
-                    })
+        if status != 200: # Error message from LinkedIn
+            msg = json.loads(content)["message"]
+            content = ext_api_error("linkedin", msg, status)
 
         return Response(content, status=status, mimetype='application/json')
 
@@ -26,7 +20,13 @@ def linkedin(item):
 
 def github(item):
     if item == "repos":
-        return "THESE ARE YOUR REPOS!"
+        content, status = rgithub.get_repos(limit=None)
+
+        if status != 200: # Error message from GitHub
+            msg = json.loads(content)["message"]
+            content = ext_api_error("github", msg, status)
+
+        return Response(content, status=status, mimetype='application/json')
 
     else: return not_implemented("github")
 
@@ -44,3 +44,12 @@ def not_implemented(ext_api_name):
 
     resp.status_code = status
     return resp
+
+
+def ext_api_error(ext_api_name, ext_error_message, status):
+    # Conveys errors from external APIs
+    return json.dumps({
+                "external api name"  : ext_api_name,
+                "external error msg" : ext_error_message,
+                "status" : status,
+            })
