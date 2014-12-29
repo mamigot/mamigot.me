@@ -3,6 +3,7 @@ from retrievers import rlinkedin, rgithub
 
 '''
 Interfaces to external APIs
+            ###CHANGE TO CLASS-BASED VIEWS WITH ONLY A GET() OPTION
 '''
 
 implemented = {
