@@ -1,5 +1,5 @@
 '''
-Configuration variables for the app
+Configuration variables for the main app
 '''
 # Define the application directory
 import os

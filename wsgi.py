@@ -2,8 +2,9 @@
 from werkzeug.serving import run_simple
 from werkzeug.wsgi import DispatcherMiddleware
 
-from mamigot.me import main
-from mamigot.me.api import api
+
+from mamigot import app as main
+from mamigot.api import api
 
 
 application = DispatcherMiddleware(main, {
