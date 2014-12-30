@@ -4,7 +4,7 @@ from werkzeug.wsgi import DispatcherMiddleware
 
 
 from mamigot import app as main
-from mamigot.api import api
+from mamigot.api import app as api
 
 
 application = DispatcherMiddleware(main, {
