@@ -2,4 +2,6 @@
 # Imports views and urls (import api.views)
 
 from flask import Flask
-api = Flask(__name__)
+app = Flask(__name__)
+
+import urls

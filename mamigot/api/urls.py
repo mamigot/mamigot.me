@@ -1,11 +1,8 @@
-### DEBUG ###
-
-from api import api
+from mamigot.api import app
 from views import linkedin, github
 
+app.add_url_rule('/linkedin/<string:item>',
+                view_func = linkedin)
 
-api.add_url_rule('/linkedin/<string:item>',
-                view_func = linkedin.linkedin)
-
-api.add_url_rule('/github/<string:item>',
-                view_func = github.github)
+app.add_url_rule('/github/<string:item>',
+                view_func = github)
