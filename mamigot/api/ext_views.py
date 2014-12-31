@@ -1,6 +1,5 @@
 '''
-Interfaces to external APIs
-            ### TODO switch to class-based views
+Resources from external APIs
 '''
 from flask import Response, request, json, jsonify
 from retrievers import rlinkedin, rgithub
