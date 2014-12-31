@@ -5,8 +5,12 @@ Integrates resources from external services such as LinkedIn and GitHub.
 
 
 ### To-Do:
- * GET/POST/PUT models via the API
+ * GET/POST/PUT/DELETE views via the API
+ * Add authentication to the API (for POST, PUT and DELETE)
  * Implement front-end (urls, views, templates, etc.)
- * Add more external retrievers (such as Stack Overflow)
+ * nginx set-up
  * Create unit tests
+ * Be able to get all posts for a given year, month, day...
+ * Prepare back-up system for MongoDB and website data
+ * Add more external retrievers (such as Stack Overflow)
  * Add WYSIWYG editor to website and handle file uploads
