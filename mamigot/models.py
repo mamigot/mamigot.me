@@ -2,7 +2,7 @@ import datetime
 from mamigot import db
 
 
-class Post(db.Document):
+class Post(object):
     created_at  = db.DateTimeField(default=datetime.datetime.now, required=True)
     modified_at = db.DateTimeField(default=datetime.datetime.now, required=True)
 
@@ -11,15 +11,18 @@ class Post(db.Document):
     desc  = db.StringField(required=True)
 
     meta = {
-        'allow_inheritance': True,
         'indexes': ['-created_at', 'slug'],
-        'ordering': ['-created_at']
+        'ordering': ['-created_at'],
     }
 
 
-class BlogPost(Post):
+class BlogPost(db.Document, Post):
     body  = db.StringField(required=True)
 
 
-class Image(Post):
+class ProjectPost(db.Document, Post):
+    body  = db.StringField(required=True)
+
+
+class Image(db.Document, Post):
     image_url = db.StringField(required=True, max_length=255)
