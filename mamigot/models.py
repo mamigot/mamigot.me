@@ -9,4 +9,17 @@ class Post(db.Document):
     title = db.StringField(max_length=255, required=True)
     slug  = db.StringField(max_length=255, required=True)
     desc  = db.StringField(required=True)
+
+    meta = {
+        'allow_inheritance': True,
+        'indexes': ['-created_at', 'slug'],
+        'ordering': ['-created_at']
+    }
+
+
+class BlogPost(Post):
     body  = db.StringField(required=True)
+
+
+class Image(Post):
+    image_url = db.StringField(required=True, max_length=255)
