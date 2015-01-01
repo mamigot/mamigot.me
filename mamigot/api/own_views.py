@@ -1,37 +1,49 @@
-from flask import Response, request
+from flask import Response, request, json, jsonify
 from flask.views import MethodView
 from mamigot.models import BlogPost
 
 
 class BlogPostAPI(MethodView):
 
-    def get_context(self, slug):
-        post = BlogPost.objects.get_or_404(slug=slug)
-        return post
-
-
     def get(self, slug=None):
         if slug:
-            # Get specific post (in Blog collection, where slug = slug)
-            msg = "getted - specified slug is " + slug
-            return Response(msg, status=200, mimetype='application/json')
+            post = BlogPost.objects(slug=slug)
+            if post:
+                return BlogPostAPI.return_200(post.to_json())
+
+            else:
+                return BlogPostAPI.abort_404(param_name='slug', param_value=slug)
 
         else:
-            # Get all posts
-            msg =  "getted - (not specified)"
-            return Response(msg, status=200, mimetype='application/json')
+            posts = BlogPost.objects.all()
+            return BlogPostAPI.return_200(posts.to_json())
 
 
     def post(self):
         # Create post
-        return Response("posted", status=200, mimetype='application/json')
+        pass
 
 
     def put(self, slug):
         # Update post
-        return Response("putted", status=200, mimetype='application/json')
+        pass
 
 
     def delete(self, slug):
         # Delete post
-        return Response("delete", status=200, mimetype='application/json')
+        pass
+
+
+    @staticmethod
+    def return_200(output_json):
+        return Response(output_json, status=200, mimetype='application/json')
+
+
+    @staticmethod
+    def abort_404(param_name, param_value):
+        msg = "Error: no matches found for '%s' = '%s'." \
+              % (param_name, param_value)
+
+        resp = jsonify({ "message"  : msg })
+        resp.status_code = 404
+        return resp
