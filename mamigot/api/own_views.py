@@ -1,5 +1,7 @@
 from flask import Response, request, json, jsonify
 from flask.views import MethodView
+import datetime
+
 from mamigot.models import BlogPost
 
 
@@ -16,15 +18,45 @@ class BlogPostAPI(MethodView):
 
         else:
             posts = BlogPost.objects.all()
-            return BlogPostAPI.resp(200, post.to_json())
+            return BlogPostAPI.resp(200, posts.to_json())
 
 
     def post(self):
-        data = request.data
+        data = json.loads(request.data)
+
+        try:
+            fields = BlogPost().get_required_fields()
+
+            content = {f:data[f] for f in fields}
+            content['modified_at'] = datetime.datetime.now()
+
+            BlogPost(**content).save()
+            return BlogPostAPI.resp(200)
 
 
-    def put(self, slug):
-        pass
+        except KeyError, e:
+            return BlogPostAPI.resp(400)
+
+
+    def put(self): # At least requires 'slug' field
+        data = json.loads(request.data)
+
+        if 'slug' not in data.keys():
+            return BlogPostAPI.resp(400)
+
+        else:
+            post = BlogPost.objects(slug=slug)
+            if post:
+                fields = BlogPost().get_required_fields()
+
+                content = {f:data[f] for f in data if f in fields}
+                content['modified_at'] = datetime.datetime.now()
+
+                post.update(**content)
+                return BlogPostAPI.resp(200)
+
+            else:
+                return BlogPostAPI.resp(404)
 
 
     def delete(self, slug=None):
