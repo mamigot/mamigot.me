@@ -3,8 +3,8 @@ from mamigot import db
 
 
 class Post(object):
-    created_at  = db.DateTimeField(default=datetime.datetime.now, required=True)
-    modified_at = db.DateTimeField(default=datetime.datetime.now, required=True)
+    created_at  = db.DateTimeField(default=datetime.datetime.now)
+    modified_at = db.DateTimeField(default=datetime.datetime.now)
 
     title = db.StringField(max_length=255, required=True)
     slug  = db.StringField(max_length=255, required=True)
@@ -14,6 +14,9 @@ class Post(object):
         'indexes': ['-created_at', 'slug'],
         'ordering': ['-created_at'],
     }
+
+    def get_required_fields(self):
+        return [k for k,v in BlogPost._fields.iteritems() if v.required]
 
 
 class BlogPost(db.Document, Post):
