@@ -9,41 +9,40 @@ class BlogPostAPI(MethodView):
         if slug:
             post = BlogPost.objects(slug=slug)
             if post:
-                return BlogPostAPI.return_200(post.to_json())
+                return BlogPostAPI.resp(200, post.to_json())
 
             else:
-                return BlogPostAPI.abort_404(param_name='slug', param_value=slug)
+                return BlogPostAPI.resp(404)
 
         else:
             posts = BlogPost.objects.all()
-            return BlogPostAPI.return_200(posts.to_json())
+            return BlogPostAPI.resp(200, post.to_json())
 
 
     def post(self):
-        # Create post
-        pass
+        data = request.data
 
 
     def put(self, slug):
-        # Update post
         pass
 
 
-    def delete(self, slug):
-        # Delete post
-        pass
+    def delete(self, slug=None):
+        if not slug:
+            return BlogPostAPI.resp(400)
+
+        else:
+            post = BlogPost.objects(slug=slug)
+            if post:
+                post.delete()
+                return BlogPostAPI.resp(200)
+
+            else:
+                return BlogPostAPI.resp(404)
 
 
     @staticmethod
-    def return_200(output_json):
-        return Response(output_json, status=200, mimetype='application/json')
+    def resp(status, output_json=None):
+        output_json = output_json if output_json else ""
 
-
-    @staticmethod
-    def abort_404(param_name, param_value):
-        msg = "Error: no matches found for '%s' = '%s'." \
-              % (param_name, param_value)
-
-        resp = jsonify({ "message"  : msg })
-        resp.status_code = 404
-        return resp
+        return Response(output_json, status=status, mimetype='application/json')
