@@ -1,77 +1,82 @@
 from flask import Response, request, json, jsonify
 from flask.views import MethodView
 import datetime
-from mamigot.models import BlogPost
+from mamigot.models import Post, BlogPost, ProjectPost, Image
 
 
-class BlogPostAPI(MethodView):
+class PostAPI(MethodView):
+    model = Post
 
-    def get(self, slug=None):
+    @classmethod
+    def get(cls, slug=None):
         if slug:
-            post = BlogPost.objects(slug=slug)
+            post = cls.model.objects(slug=slug)
             if post:
-                return BlogPostAPI.resp(200, post.to_json())
+                return cls.resp(200, post.to_json())
 
             else:
-                return BlogPostAPI.resp(404)
+                return cls.resp(404)
 
         else:
-            posts = BlogPost.objects.all()
-            return BlogPostAPI.resp(200, posts.to_json())
+            posts = cls.model.objects.all()
+            return cls.resp(200, posts.to_json())
 
 
-    def post(self):
-        if not request.data: return BlogPostAPI.resp(400)
+    @classmethod
+    def post(cls):
+        if not request.data: return cls.resp(400)
         data = json.loads(request.data)
 
         try:
-            fields = BlogPost.get_required_fields()
+            fields = cls.model.get_required_fields()
             content = {f:data[f] for f in fields}
 
-            BlogPost(**content).save()
-            return BlogPostAPI.resp(200)
+            cls.model(**content).save()
+            return cls.resp(200)
 
         except KeyError, e:
-            return BlogPostAPI.resp(400)
+            return cls.resp(400)
 
 
-    def put(self): # At least requires 'slug' field
-        if not request.data: return BlogPostAPI.resp(400)
+    @classmethod
+    def put(cls): # At least requires 'slug' field
+        if not request.data: return cls.resp(400)
         data = json.loads(request.data)
 
         if 'slug' not in data.keys():
-            return BlogPostAPI.resp(400)
+            return cls.resp(400)
 
         else:
-            post = BlogPost.objects(slug=data['slug'])
+            post = cls.model.objects(slug=data['slug'])
             if post:
-                fields = BlogPost.get_required_fields()
+                fields = cls.model.get_required_fields()
 
                 content = {f:data[f] for f in data if f in fields}
                 content['modified_at'] = datetime.datetime.now()
 
                 # Bug: https://github.com/MongoEngine/mongoengine/issues/843
-                fmtted = { (str("set__") + k):v for k,v in content.iteritems() }
+                fmtted = { ("set__" + k):v for k,v in content.iteritems() }
 
                 post.update(**fmtted)
-                return BlogPostAPI.resp(200)
+                return cls.resp(200)
 
             else:
-                return BlogPostAPI.resp(404)
+                return cls.resp(404)
 
 
-    def delete(self, slug=None):
+    @classmethod
+    def delete(cls, slug=None):
         if not slug:
-            return BlogPostAPI.resp(400)
+            return cls.resp(400)
 
         else:
-            post = BlogPost.objects(slug=slug)
+            post = cls.model.objects(slug=slug)
             if post:
                 post.delete()
-                return BlogPostAPI.resp(200)
+                return cls.resp(200)
 
             else:
-                return BlogPostAPI.resp(404)
+                return cls.resp(404)
 
 
     @staticmethod
@@ -79,3 +84,15 @@ class BlogPostAPI(MethodView):
         output_json = output_json if output_json else ""
 
         return Response(output_json, status=status, mimetype='application/json')
+
+
+class BlogPostAPI(PostAPI):
+    model = BlogPost
+
+
+class ProjectPostAPI(PostAPI):
+    model = ProjectPost
+
+
+class ImageAPI(PostAPI):
+    model = Image
