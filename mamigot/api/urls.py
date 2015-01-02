@@ -1,6 +1,6 @@
 from mamigot.api import app
-from views_ext import linkedin, github
-from views_own import BlogPostAPI
+from views.ext import linkedin, github
+from views.own import BlogPostAPI
 
 
 app.add_url_rule('/linkedin/<string:item>', view_func = linkedin)

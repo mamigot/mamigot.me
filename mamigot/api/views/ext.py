@@ -2,7 +2,7 @@
 Resources from external APIs
 '''
 from flask import Response, request, json, jsonify
-from retrievers import rlinkedin, rgithub
+from ..retrievers import rlinkedin, rgithub
 
 
 supported = {
