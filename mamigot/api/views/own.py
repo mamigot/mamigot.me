@@ -21,13 +21,12 @@ class BlogPostAPI(MethodView):
 
 
     def post(self):
+        if not request.data: return BlogPostAPI.resp(400)
         data = json.loads(request.data)
 
         try:
             fields = BlogPost.get_required_fields()
-
             content = {f:data[f] for f in fields}
-            content['modified_at'] = datetime.datetime.now()
 
             BlogPost(**content).save()
             return BlogPostAPI.resp(200)
@@ -37,20 +36,24 @@ class BlogPostAPI(MethodView):
 
 
     def put(self): # At least requires 'slug' field
+        if not request.data: return BlogPostAPI.resp(400)
         data = json.loads(request.data)
 
         if 'slug' not in data.keys():
             return BlogPostAPI.resp(400)
 
         else:
-            post = BlogPost.objects(slug=slug)
+            post = BlogPost.objects(slug=data['slug'])
             if post:
                 fields = BlogPost.get_required_fields()
 
                 content = {f:data[f] for f in data if f in fields}
                 content['modified_at'] = datetime.datetime.now()
 
-                post.update(**content)
+                # Bug: https://github.com/MongoEngine/mongoengine/issues/843
+                fmtted = { (str("set__") + k):v for k,v in content.iteritems() }
+
+                post.update(**fmtted)
                 return BlogPostAPI.resp(200)
 
             else:
