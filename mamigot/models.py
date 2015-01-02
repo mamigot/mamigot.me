@@ -15,8 +15,12 @@ class Post(object):
         'ordering': ['-created_at'],
     }
 
-    def get_required_fields(self):
-        return [k for k,v in BlogPost._fields.iteritems() if v.required]
+    @classmethod
+    def get_required_fields(cls):
+        if issubclass(cls, db.Document):
+            return [k for k,v in cls._fields.iteritems() if v.required]
+
+        else: raise NotImplementedError
 
 
 class BlogPost(db.Document, Post):

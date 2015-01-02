@@ -1,7 +1,6 @@
 from flask import Response, request, json, jsonify
 from flask.views import MethodView
 import datetime
-
 from mamigot.models import BlogPost
 
 
@@ -25,14 +24,13 @@ class BlogPostAPI(MethodView):
         data = json.loads(request.data)
 
         try:
-            fields = BlogPost().get_required_fields()
+            fields = BlogPost.get_required_fields()
 
             content = {f:data[f] for f in fields}
             content['modified_at'] = datetime.datetime.now()
 
             BlogPost(**content).save()
             return BlogPostAPI.resp(200)
-
 
         except KeyError, e:
             return BlogPostAPI.resp(400)
@@ -47,7 +45,7 @@ class BlogPostAPI(MethodView):
         else:
             post = BlogPost.objects(slug=slug)
             if post:
-                fields = BlogPost().get_required_fields()
+                fields = BlogPost.get_required_fields()
 
                 content = {f:data[f] for f in data if f in fields}
                 content['modified_at'] = datetime.datetime.now()
