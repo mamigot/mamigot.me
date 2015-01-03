@@ -17,7 +17,6 @@ class PostAPI(MethodView):
         if not data: return cls.resp(404)
 
         specific_fields = request.args.get('fields')
-
         if specific_fields:
             wanted = specific_fields.split(",")
             allowed = cls.model.get_required_fields()
@@ -27,6 +26,10 @@ class PostAPI(MethodView):
                 data = data.only(*filtered)
 
             else: return cls.resp(400)
+
+        limit = request.args.get('limit')
+        if limit and limit > 0:
+            data = data[:int(limit)] # Only the first 'limit' results
 
         return cls.resp(200, data.to_json())
 
