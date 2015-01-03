@@ -10,16 +10,25 @@ class PostAPI(MethodView):
     @classmethod
     def get(cls, slug=None):
         if slug:
-            post = cls.model.objects(slug=slug)
-            if post:
-                return cls.resp(200, post.to_json())
-
-            else:
-                return cls.resp(404)
-
+            data = cls.model.objects(slug=slug)
         else:
-            posts = cls.model.objects.all()
-            return cls.resp(200, posts.to_json())
+            data = cls.model.objects.all()
+
+        if not data: return cls.resp(404)
+
+        specific_fields = request.args.get('fields')
+
+        if specific_fields:
+            wanted = specific_fields.split(",")
+            allowed = cls.model.get_required_fields()
+            filtered = [w for w in wanted if w in allowed]
+
+            if filtered:
+                data = data.only(*filtered)
+
+            else: return cls.resp(400)
+
+        return cls.resp(200, data.to_json())
 
 
     @classmethod
@@ -28,7 +37,7 @@ class PostAPI(MethodView):
         data = json.loads(request.data)
 
         try:
-            fields = cls.model.get_required_fields()
+            fields = cls.model.get_manual_fields()
             content = {f:data[f] for f in fields}
 
             cls.model(**content).save()
@@ -49,7 +58,7 @@ class PostAPI(MethodView):
         else:
             post = cls.model.objects(slug=data['slug'])
             if post:
-                fields = cls.model.get_required_fields()
+                fields = cls.model.get_manual_fields()
 
                 content = {f:data[f] for f in data if f in fields}
                 content['modified_at'] = datetime.datetime.now()
