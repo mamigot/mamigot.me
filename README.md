@@ -5,7 +5,6 @@ Integrates resources from external services such as LinkedIn and GitHub.
 
 
 ### To-Do:
- * GET/POST/PUT/DELETE views via the API
  * Add authentication to the API (for POST, PUT and DELETE)
  * Implement front-end (urls, views, templates, etc.)
  * nginx set-up
