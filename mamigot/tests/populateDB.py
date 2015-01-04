@@ -24,5 +24,5 @@ for i in range(5):
             }
 
     BlogPost(body="body" + str(i), **vals).save()
-    ProjectPost(body="body" + str(i), **vals).save()
+    ProjectPost(body="body" + str(i), highlighted=False, **vals).save()
     Image(image_url="url" + str(i), **vals).save()

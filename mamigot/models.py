@@ -40,6 +40,7 @@ class BlogPost(db.Document, Post):
 
 class ProjectPost(db.Document, Post):
     body  = db.StringField(required=True)
+    highlighted = db.BooleanField(required=True)
 
 
 class Image(db.Document, Post):
