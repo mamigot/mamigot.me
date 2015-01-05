@@ -1,7 +1,6 @@
 from flask import json
 import requests
-
-from secret import sgithub
+from secret_credentials import sgithub
 
 
 def get_repos(limit=None):

@@ -1,6 +1,6 @@
 from flask import json
 import oauth2 as oauth
-from secret import slinkedin
+from secret_credentials import slinkedin
 
 
 def get_client():
