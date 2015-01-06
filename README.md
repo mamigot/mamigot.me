@@ -14,3 +14,5 @@ Integrates resources from external services such as LinkedIn and GitHub.
  * Implement Google's reCAPTCHA for contact form
  * Add more external retrievers (such as Stack Overflow)
  * Add WYSIWYG editor to website and handle file uploads
+ * Resize images in the backend and improve website loading speed (compress, etc.)
+ * Use a profiler to identify bottlenecks (https://gist.github.com/shreyansb/86b74ae47719a27bbb25)
