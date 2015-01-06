@@ -1,6 +1,6 @@
 from mongoengine.fields import DateTimeField, ObjectIdField
 import datetime
-from mamigot import db
+from mamigot.api import db
 
 
 class Post(object):

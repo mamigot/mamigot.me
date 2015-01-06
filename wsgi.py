@@ -3,11 +3,11 @@ from werkzeug.serving import run_simple
 from werkzeug.wsgi import DispatcherMiddleware
 
 
-from mamigot import app as main
+from mamigot.frontend import app as frontend
 from mamigot.api import app as api
 
 
-application = DispatcherMiddleware(main, {
+application = DispatcherMiddleware(frontend, {
     '/api': api
 })
 

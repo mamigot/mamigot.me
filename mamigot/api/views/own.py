@@ -1,7 +1,7 @@
 from flask import Response, request, json, jsonify
 from flask.views import MethodView
 import datetime
-from mamigot.models import Post, BlogPost, ProjectPost, Image
+from mamigot.api.models import Post, BlogPost, ProjectPost, Image
 
 
 class PostAPI(MethodView):
