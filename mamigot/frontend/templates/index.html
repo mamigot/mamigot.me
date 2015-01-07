@@ -1,0 +1,97 @@
+{% extends "__layout.html" %}
+
+
+{% block main_body %}
+
+  {% block introductory_summary %}
+    {% include '_intro_summary.html' %}
+  {% endblock %}
+
+  <div class="row">
+    <!-- Blog -->
+    <div class="col-md-6">
+      <div class="left-promo-list-view">
+        <div class="row"> <!-- COMMON -->
+          <h1>
+            <div class="col-md-6">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp&nbsp
+              Blog
+            </div>
+            <div class="col-md-6">
+              <small class="active-category">latest</small>
+              <small> | </small>
+              <a href="blog/"><small>view all</small></a>
+            </div>
+          </h1>
+        </div>
+        <br>
+        <div class="row summarized_item">
+          <h4>
+            <a href="postlink">Title of one post in the blog</a>
+            <br>
+            <small>December 12, 2014</small>
+          </h4>
+          <h5 class="row summarized_item">
+            Summary of the post that blash adshl asdhalsdk asdasdlja alsdjhaksd
+          </h5>
+        </div> <!-- /COMMON -->
+      </div>
+    </div>
+    <!-- /Blog -->
+
+    <!-- Projects -->
+    <div class="col-md-6">
+      <div class="left-promo-list-view">
+        <div class="row">
+          <h1>
+            <div class="col-md-6">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp&nbsp
+              Projects
+            </div>
+            <div class="col-md-6">
+              <small class="active-category">highlighted</small><small> | </small><small>view all</small>
+            </div>
+          </h1>
+        </div>
+        <br>
+        <div class="row summarized_item">
+          <h4>
+            <a href="">Title of one post in the blog</a>
+            <br>
+            <small>December 12, 2014</small>
+          </h4>
+          <h5 class="row summarized_item">
+            Summary of the post that blash adshl asdhalsdk asdasdlja alsdjhaksd
+          </h5>
+        </div>
+      </div>
+    </div>
+    <!-- /Projects -->
+  </div>
+
+  <!-- Resume -->
+  <div class="left-promo-list-view">
+    <h1>
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp&nbsp
+      <a href="">Resume</a>
+      <small>(courtesy of LinkedIn's REST API)</small>
+    </h1>
+  </div>
+  <!-- /Resume -->
+
+  <!-- Contact -->
+  <div class="left promo-list-view">
+    <h1>
+      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp&nbsp
+      Contact Me
+      <small>(or via email at <a href="mailto:miguel.amigot@gmail.com">miguel.amigot@gmail.com</a>)</small>
+    </h1>
+    <br>
+
+    {% block contact %}
+      {% include '_contact_form.html' %}
+    {% endblock %}
+  </div>
+  <!-- /Contact -->
+
+{% endblock %}
