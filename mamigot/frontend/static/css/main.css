@@ -1,0 +1,39 @@
+/* Apply font to entire website */
+* { font-family: 'Raleway', 'Helvetica Neue'; }
+
+/* External logos on navigation bar */
+.navbar-brand-icon {
+    height: 30px;
+    margin: -10px 0px -10px 0px;
+}
+
+/* Introductory summary and picture */
+.intro{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    font-size: 2.5rem;
+}
+/* Portrait */
+#mikel{
+    width: 100%;
+}
+
+/* Promotional/summarized list view */
+.list-view{
+    margin: 10px 0 10px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
+}
+.active-category{
+    color: #337ab7;
+    text-decoration: underline;
+}
+.summarized_item{
+    margin-left: 5%;
+}
+
+/* Single post view */
+.single-post-title{
+    color: #337ab7;
+}
