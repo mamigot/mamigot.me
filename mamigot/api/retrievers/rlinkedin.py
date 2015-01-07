@@ -1,14 +1,14 @@
 from flask import json
 import oauth2 as oauth
-from secret_credentials import slinkedin
+import secret_credentials as secret
 
 
 def get_client():
     # Keys and secrets from app registration
-    consumer_key    = slinkedin['consumer_key']
-    consumer_secret = slinkedin['consumer_secret']
-    user_token      = slinkedin['user_token']
-    user_secret     = slinkedin['user_secret']
+    consumer_key    = secret.slinkedin['consumer_key']
+    consumer_secret = secret.slinkedin['consumer_secret']
+    user_token      = secret.slinkedin['user_token']
+    user_secret     = secret.slinkedin['user_secret']
 
     # Consumer object
     consumer = oauth.Consumer(consumer_key, consumer_secret)

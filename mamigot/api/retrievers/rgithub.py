@@ -1,10 +1,10 @@
 from flask import json
 import requests
-from secret_credentials import sgithub
+import secret_credentials as secret
 
 
 def get_repos(limit=None):
-    username = sgithub['username']
+    username = secret.sgithub['username']
     url = "https://api.github.com/users/" + username + "/repos?sort=updated"
 
     r = requests.get(url)
