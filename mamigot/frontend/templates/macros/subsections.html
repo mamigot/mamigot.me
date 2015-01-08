@@ -8,7 +8,7 @@
   <small>
     <span class="highlighted">latest</span>
     |
-    <a href="" class="undecorated-link">view all</a>
+    <a href="{{ url_for('blog_archive') }}" class="undecorated-link">view all</a>
   </small>
 {%- endmacro %}
 
@@ -16,7 +16,7 @@
 <small>
   <span class="highlighted">highlighted</span>
   |
-  <a href="" class="undecorated-link">view all</a>
+  <a href="{{ url_for('projects') }}" class="undecorated-link">view all</a>
 </small>
 {%- endmacro %}
 

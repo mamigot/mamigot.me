@@ -1,12 +1,12 @@
 {% macro linkify(text, href="", anchor="") -%}
   {% if href %}
-  <a href="{{ href }}">{{ text }}</a>
+    <a href="{{ href }}">{{ text }}</a>
 
-  {% elif name %}
-  <a name="{{ anchor }}">{{ text }}</a>
+  {% elif anchor %}
+    <a name="{{ anchor }}" class="undecorated-link">{{ text }}</a>
 
   {% else %}
-  {{ text }}
+    {{ text }}
 
   {% endif %}
 {%- endmacro %}
