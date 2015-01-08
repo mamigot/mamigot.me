@@ -1,33 +1,41 @@
-{% macro blog_subcats() -%}
+{% import "macros/helpers.html" as helpers %}
+
+
+{% set MAIN_GLYPHICON = 'glyphicon-chevron-right' %}
+
+
+{% macro blog_subcategories() -%}
   <small>
-    <a href="">latest</a>
+    <span class="highlighted">latest</span>
     |
-    <a href="">view all</a>
+    <a href="" class="undecorated-link">view all</a>
   </small>
 {%- endmacro %}
 
-{% macro projects_subcats() -%}
+{% macro projects_subcategories() -%}
 <small>
-  <a href="">highlighted</a>
+  <span class="highlighted">highlighted</span>
   |
-  <a href="">view all</a>
+  <a href="" class="undecorated-link">view all</a>
 </small>
 {%- endmacro %}
 
 
-{% macro list_view(title, href, posts) -%}
+{% macro list_view(title, href, posts, glyphicon=MAIN_GLYPHICON) -%}
   <div class="row">
     <h1>
       <div class="col-md-6">
-        <span class="glyphicon glyphicon-chevron-right">&nbsp</span>
-        {{ title }}
+        <span class="glyphicon {{ glyphicon }}">&nbsp</span>
+        <a href="{{ href }}" class="undecorated-link">
+          {{ title }}
+        </a>
       </div>
       <div class="col-md-6">
         {% if title == "Blog" %}
-          {{ blog_subcats() }}
+          {{ blog_subcategories() }}
 
         {% elif title == "Projects" %}
-          {{ projects_subcats() }}
+          {{ projects_subcategories() }}
 
         {% endif %}
       </div>
@@ -44,12 +52,21 @@
   </h5>
 {%- endmacro %}
 
-{% macro single_title(title, href, subtitle) %}
+{% macro single_title(title, href="", anchor="", subtitle="",
+                      highlighted=True, glyphicon=MAIN_GLYPHICON) %}
   <div class="row">
     <h1>
       <div class="col-md-6">
-        <span class="glyphicon glyphicon-chevron-right">&nbsp</span>
-        {{ title }}
+        <span class="glyphicon {{ glyphicon }}">&nbsp</span>
+        {% if highlighted %}
+          <span class="highlighted">
+            {{ helpers.linkify(title, href, anchor) }}
+          </span>
+
+        {% else %}
+          {{ helpers.linkify(title, href, anchor) }}
+
+        {% endif %}
       </div>
       <div class="col-md-6">
         <small>{{ subtitle }}</small>
