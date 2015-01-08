@@ -11,35 +11,23 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Blog</a></li>
-        <li><a href="#about">Contact</a></li>
-        <li><a href="#contact">Resume</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        <li class="active"><a href="#blog">Blog</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/resume">Resume</a></li>
+        <li><a href="/#contact">Contact</a></li>
       </ul>
       <div class="container-fluid">
         <div class="navbar-header navbar-right navbar-brand">
-          <a href="#">
-            <img class="navbar-brand-icon" src="http://static.squarespace.com/static/52ed830ee4b02ab844b5f126/t/53347da3e4b09fffc70d613a/1395948969105/twitter-logo-transparent-small.png">
+          <a href="https://twitter.com/miguelamigot">
+            <img class="navbar-brand-icon" src="{{ url_for('static', filename='img/icons/twitter.png') }}">
+          <a href="https://github.com/miguel5">
+            <img class="navbar-brand-icon" src="{{ url_for('static', filename='img/icons/github.png') }}">
           </a>
-          <a href="#">
-            <img class="navbar-brand-icon" src="http://www.iconsdb.com/icons/download/black/github-11-256.png">
+          <a href="https://linkedin.com/in/miguelamigotgonzalez/">
+            <img class="navbar-brand-icon" src="{{ url_for('static', filename='img/icons/linkedin.png') }}">
           </a>
-          <a href="#">
-            <img class="navbar-brand-icon" src="http://crlsalumni.org/img/linkedin_icon.png">
-          </a>
-          <a href="#">
-            <img class="navbar-brand-icon" src="http://sociallyacceptabledotme.files.wordpress.com/2013/04/facebook_logo_square.png?w=281&h=281">
+          <a href="https://facebook.com/m.amigot">
+            <img class="navbar-brand-icon" src="{{ url_for('static', filename='img/icons/facebook.png') }}">
           </a>
         </div>
       </div>
