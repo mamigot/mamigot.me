@@ -1,0 +1,25 @@
+{% extends "layouts/layout.html" %}
+{% import "macros/subsections.html" as subsections %}
+
+
+{% block main_body %}
+
+  {% block introductory_summary %}
+    {% include 'macros/intro_summary.html' %}
+  {% endblock %}
+
+  <div class="col-md-6 centered">
+
+    {{ subsections.list_view('Blog', 'link', 'posts') }}
+
+    <br>
+
+    {{ subsections.list_view('Projects', 'link', 'posts') }}
+
+    <br>
+
+    {{ subsections.single_title('Resume', 'link', '(via LinkedIn\'s API)') }}
+
+  </div>
+
+{% endblock %}

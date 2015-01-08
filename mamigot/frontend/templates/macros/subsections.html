@@ -1,0 +1,59 @@
+{% macro blog_subcats() -%}
+  <small>
+    <a href="">latest</a>
+    |
+    <a href="">view all</a>
+  </small>
+{%- endmacro %}
+
+{% macro projects_subcats() -%}
+<small>
+  <a href="">highlighted</a>
+  |
+  <a href="">view all</a>
+</small>
+{%- endmacro %}
+
+
+{% macro list_view(title, href, posts) -%}
+  <div class="row">
+    <h1>
+      <div class="col-md-6">
+        <span class="glyphicon glyphicon-chevron-right">&nbsp</span>
+        {{ title }}
+      </div>
+      <div class="col-md-6">
+        {% if title == "Blog" %}
+          {{ blog_subcats() }}
+
+        {% elif title == "Projects" %}
+          {{ projects_subcats() }}
+
+        {% endif %}
+      </div>
+    </h1>
+  </div>
+  <br>
+  <h4>
+    <a href="">Title of one post in the blog</a>
+    <br>
+    <small>December 12, 2014</small>
+  </h4>
+  <h5 class="summarized_item">
+    Summary of the post that blash adshl asdhalsdk asdasdlja alsdjhaksd
+  </h5>
+{%- endmacro %}
+
+{% macro single_title(title, href, subtitle) %}
+  <div class="row">
+    <h1>
+      <div class="col-md-6">
+        <span class="glyphicon glyphicon-chevron-right">&nbsp</span>
+        {{ title }}
+      </div>
+      <div class="col-md-6">
+        <small>{{ subtitle }}</small>
+      </div>
+    </h1>
+  </div>
+{%- endmacro %}
