@@ -1,85 +1,98 @@
-{% set DEFAULT_BLOCK_SIZE = 6 %} <!-- Uses Bootstrap's grid system, up to 12 -->
+{% set DEFAULT_BLOCK_SIZE = 6 %} <!-- Uses Bootstrap's grid system; up to 12 -->
 {% set DEFAULT_TITLE_GLYPH = 'glyphicon-chevron-right' %}
 
 
 
-{% macro list_view(title, sub_views,
-                   block_size=DEFAULT_BLOCK_SIZE,
-                   glyphicon=DEFAULT_TITLE_GLYPH) -%}
-  <div class="row">
-    <h1>
-      <div class="col-md-{{ block_size }}">
-        <span class="glyphicon {{ glyphicon }}" aria-hidden="true"></span>&nbsp&nbsp
-        {{ title }}
-      </div>
-      <div class="col-md-{{ block_size }}">
-        {% for name, link in sub_views %}
-
-          <a href="{{ link }}">
-            {% if loop.first %}
-              <small class="active-category">{{ name }}</small>
-            {% else %}
-              <small>{{ name }}</small>
-            {% endif %}
-          </a>
-
-          {% if not loop.last %}
-            <small> | </small>
-          {% endif %}
-
-        {% endfor %}
-      </div>
-    </h1>
-  </div>
-  <br>
-  <div class="row summarized_item">
-    <h4>
-      <a href="postlink">Title of one post in the blog</a>
-      <br>
-      <small>December 12, 2014</small>
-    </h4>
-    <h5 class="row summarized_item">
-      Summary of the post that blash adshl asdhalsdk asdasdlja alsdjhaksd
-    </h5>
-  </div>
-{%- endmacro %}
-
-
-{% macro single_title(title, subtitle, link=None,
+{% macro single_title(category, subtitle, link=None,
                       block_size=DEFAULT_BLOCK_SIZE,
                       glyphicon=DEFAULT_TITLE_GLYPH) -%}
   <h1>
-    <span class="glyphicon {{ glyphicon }}" aria-hidden="true"></span>&nbsp&nbsp
+    <span class="glyphicon {{ glyphicon }}" aria-hidden="true"></span>
+    &nbsp&nbsp
+
     {% if link %}
-      <a href="{{ link }}">{{ title }}</a>
+      <a href="{{ link }}">{{ category }}</a>
     {% else %}
-      {{ title }}
+      {{ category }}
     {% endif %}
     <small>{{ subtitle }}</small>
   </h1>
 {%- endmacro %}
 
 
+{% macro list_title(category, sub_views,
+                    block_size=DEFAULT_BLOCK_SIZE,
+                    glyphicon=DEFAULT_TITLE_GLYPH) -%}
+  <div class="row">
+    <h1>
+      <div class="col-md-{{ block_size }}">
+        <span class="glyphicon {{ glyphicon }}" aria-hidden="true"></span>
+        &nbsp&nbsp
+
+        {{ category }}
+      </div>
+      <div class="col-md-{{ block_size }}">
+        {% for name, link in sub_views %}
+
+        <a href="{{ link }}"
+           class=" {{ category + '-sub-' + name.replace(' ', '-') }} ">
+          {% if loop.first %}
+            <small class="active-category">{{ name }}</small>
+          {% else %}
+            <small>{{ name }}</small>
+          {% endif %}
+        </a>
+
+        {% if not loop.last %}
+          <small> | </small>
+        {% endif %}
+
+        {% endfor %}
+      </div>
+    </h1>
+  </div>
+{%- endmacro %}
+
+
+{% macro list_item(category) -%}
+  <div class="row summarized_item {{ category + '-item' }}">
+    <h4>
+      <a href="" class="{{ category + '-item-link' }}"></a>
+      <br>
+      <small class="{{ category + '-item-date' }}"></small>
+    </h4>
+    <h5 class="row summarized_item {{ category + '-item-summary' }}"></h5>
+  </div>
+{%- endmacro %}
+
 
 {% macro blog() -%}
   {{
-    list_view(title='Blog',
+    list_title(category='Blog',
               sub_views=[('latest', 'link'), ('view all', 'link2')])
+  }}
+  <br>
+  {{
+    list_item(category='blog')
   }}
 {%- endmacro %}
 
 
 {% macro projects() -%}
   {{
-    list_view(title='Projects',
-              sub_views=[('highlighted', 'link'), ('view all', 'link2')])
+    list_title(category='Projects',
+              sub_views=[('highlighted', 'link'), ('view all', '/')])
+  }}
+  <br>
+  {{
+    list_item(category='projects')
   }}
 {%- endmacro %}
 
 
 {% macro resume() -%}
   {{
-    single_title(title='Resume',
+    single_title(category='Resume',
                  subtitle="(courtesy of LinkedIn's API)",
                  link='link3')
   }}
@@ -88,8 +101,9 @@
 
 {% macro contact() -%}
   {{
-    single_title(title='Contact Me',
-    subtitle="(or via email at <a href='mailto:miguel.amigot@gmail.com'>miguel.amigot@gmail.com</a>)" | safe,
+    single_title(category='Contact Me',
+    subtitle="(or via email at <a href='mailto:miguel.amigot@gmail.com'> \
+              miguel.amigot@gmail.com</a>)" | safe,
     glyphicon='glyphicon-envelope')
   }}
 {%- endmacro %}
