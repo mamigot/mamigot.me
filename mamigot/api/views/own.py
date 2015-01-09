@@ -1,6 +1,9 @@
 from flask import Response, request, json, jsonify
 from flask.views import MethodView
-import datetime
+
+from mongoengine.fields import DateTimeField
+import datetime, json
+
 from mamigot.api.models import Post, BlogPost, ProjectPost, Image
 
 
@@ -19,9 +22,10 @@ class PostAPI(MethodView):
 
     @classmethod
     def get(cls, slug=None):
-        data = cls.find(slug)
-        if not data: return cls.resp(404)
+        qset = cls.find(slug)
+        if not qset: return cls.resp(404)
 
+        # Get only the fields that were specified in the URLs
         specific_fields = request.args.get('fields')
         if specific_fields:
             wanted = specific_fields.split(",")
@@ -29,15 +33,18 @@ class PostAPI(MethodView):
 
             chosen_fields = [w for w in wanted if w in allowed]
             if chosen_fields:
-                data = data.only(*chosen_fields)
+                qset = qset.only(*chosen_fields)
 
             else: return cls.resp(400)
 
+        # Limit the number of results
         limit = request.args.get('limit')
         if limit and limit > 0:
-            data = data[:int(limit)] # Only the first 'limit' results
+            qset = qset[:int(limit)] # Only the first 'limit' results
 
-        return cls.resp(200, data.to_json())
+
+        js_resp = cls.clean_output(qset)
+        return cls.resp(200, js_resp)
 
 
     @classmethod
@@ -95,6 +102,23 @@ class PostAPI(MethodView):
 
             else:
                 return cls.resp(404)
+
+
+    @classmethod
+    def clean_output(cls, qset):
+        '''
+        Cleans a queryset (returned value from Mongo) and returns as JSON
+        '''
+        qset = qset.exclude("id")
+
+        # Format dates (currently are timestamps)
+        # http://stackoverflow.com/questions/13230284/convert-mongodb-return-object-to-dictionary
+        # http://api.mongodb.org/python/current/api/bson/son.html
+        props = [ob.to_mongo().to_dict() for ob in qset]
+
+        ''' RETURN CLEAN OUTPUT '''
+
+        return json.dumps( [{"":""}] )
 
 
     @staticmethod
