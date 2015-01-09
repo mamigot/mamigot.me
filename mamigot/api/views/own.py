@@ -8,22 +8,28 @@ class PostAPI(MethodView):
     model = Post
 
     @classmethod
-    def get(cls, slug=None):
+    def find(cls, slug=None):
         if slug:
             data = cls.model.objects(slug=slug)
         else:
             data = cls.model.objects.all()
 
+        return data
+
+
+    @classmethod
+    def get(cls, slug=None):
+        data = cls.find(slug)
         if not data: return cls.resp(404)
 
         specific_fields = request.args.get('fields')
         if specific_fields:
             wanted = specific_fields.split(",")
             allowed = cls.model.get_required_fields()
-            filtered = [w for w in wanted if w in allowed]
 
-            if filtered:
-                data = data.only(*filtered)
+            chosen_fields = [w for w in wanted if w in allowed]
+            if chosen_fields:
+                data = data.only(*chosen_fields)
 
             else: return cls.resp(400)
 
@@ -104,6 +110,16 @@ class BlogPostAPI(PostAPI):
 
 class ProjectPostAPI(PostAPI):
     model = ProjectPost
+
+    @classmethod
+    def find(cls, slug=None):
+        data = super(ProjectPostAPI, cls).find(slug)
+
+        # Apply specific filtering
+        if request.args.get('highlighted') == 'true':
+            data = data.filter(highlighted=True)
+
+        return data
 
 
 class ImageAPI(PostAPI):
