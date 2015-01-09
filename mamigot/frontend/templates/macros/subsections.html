@@ -13,11 +13,11 @@
 {%- endmacro %}
 
 {% macro projects_subcategories() -%}
-<small>
-  <span class="highlighted">highlighted</span>
-  |
-  <a href="{{ url_for('projects') }}" class="undecorated-link">view all</a>
-</small>
+  <small>
+    <span class="highlighted">highlighted</span>
+    |
+    <a href="{{ url_for('projects') }}" class="undecorated-link">view all</a>
+  </small>
 {%- endmacro %}
 
 
@@ -41,15 +41,19 @@
       </div>
     </h1>
   </div>
-  <br>
-  <h4>
-    <a href="">Title of one post in the blog</a>
+
+  {% for post in posts %}
     <br>
-    <small>December 12, 2014</small>
-  </h4>
-  <h5 class="summarized_item">
-    Summary of the post that blash adshl asdhalsdk asdasdlja alsdjhaksd
-  </h5>
+    <h4>
+      <a href="">{{ post.title }}</a>
+      <br>
+      <small>{{ post.created_at }}</small>
+    </h4>
+    <h5 class="summarized_item">
+      {{ post.desc }}
+    </h5>
+  {% endfor %}
+
 {%- endmacro %}
 
 {% macro single_title(title, href="", anchor="", subtitle="",

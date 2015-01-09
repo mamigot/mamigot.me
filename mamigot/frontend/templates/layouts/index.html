@@ -9,17 +9,23 @@
   {% endblock %}
 
   <div class="col-md-6 centered">
+    {{ subsections.list_view('Blog', url_for('blog_archive'), blog_posts) }}
+    <hr>
+    {{ subsections.list_view('Projects', url_for('projects'), project_posts) }}
+    <hr>
+    {{ subsections.single_title(title='Resume',
+                                href= url_for('resume_html'),
+                                subtitle='(via LinkedIn\'s API)') }}
+    <hr>
+  </div>
 
-    {{ subsections.list_view('Blog', 'link', 'posts') }}
-
+  <div class="col-md-8 centered">
+    {{ subsections.single_title(title='Contact Me',
+                                anchor='contact',
+                                highlighted=False,
+                                glyphicon='glyphicon-envelope') }}
     <br>
-
-    {{ subsections.list_view('Projects', 'link', 'posts') }}
-
-    <br>
-
-    {{ subsections.single_title('Resume', 'link', '(via LinkedIn\'s API)') }}
-
+    {% include 'macros/contact_form.html' %}
   </div>
 
 {% endblock %}
