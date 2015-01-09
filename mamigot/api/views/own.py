@@ -1,7 +1,6 @@
 from flask import Response, request, json, jsonify
 from flask.views import MethodView
 
-from mongoengine.fields import DateTimeField
 import datetime, json
 
 from mamigot.api.models import Post, BlogPost, ProjectPost, Image
@@ -42,8 +41,7 @@ class PostAPI(MethodView):
         if limit and limit > 0:
             qset = qset[:int(limit)] # Only the first 'limit' results
 
-
-        js_resp = cls.clean_output(qset)
+        js_resp = cls.format_output(qset)
         return cls.resp(200, js_resp)
 
 
@@ -105,20 +103,25 @@ class PostAPI(MethodView):
 
 
     @classmethod
-    def clean_output(cls, qset):
+    def format_output(cls, qset):
         '''
         Cleans a queryset (returned value from Mongo) and returns as JSON
         '''
         qset = qset.exclude("id")
 
-        # Format dates (currently are timestamps)
         # http://stackoverflow.com/questions/13230284/convert-mongodb-return-object-to-dictionary
         # http://api.mongodb.org/python/current/api/bson/son.html
-        props = [ob.to_mongo().to_dict() for ob in qset]
+        items = [ob.to_mongo().to_dict() for ob in qset]
 
-        ''' RETURN CLEAN OUTPUT '''
+        formatted = []
+        for item in items:
+            # No need to expose BSON ID
+            item.pop('_id', None)
 
-        return json.dumps( [{"":""}] )
+            item = {k:str(v) for k,v in item.iteritems()}
+            formatted.append( item )
+
+        return json.dumps( formatted )
 
 
     @staticmethod
@@ -139,9 +142,15 @@ class ProjectPostAPI(PostAPI):
     def find(cls, slug=None):
         data = super(ProjectPostAPI, cls).find(slug)
 
-        # Apply specific filtering
-        if request.args.get('highlighted') == 'true':
+        # Apply filtering criteria specific to ProjectPosts
+        highlighted = request.args.get('highlighted')
+        highlighted = highlighted.lower() if highlighted else ""
+
+        if highlighted == 'true':
             data = data.filter(highlighted=True)
+
+        elif highlighted == "false":
+            data = data.filter(highlighted=False)
 
         return data
 
