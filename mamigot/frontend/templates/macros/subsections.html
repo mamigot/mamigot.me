@@ -97,6 +97,19 @@
 {%- endmacro %}
 
 
+{% macro full_post(post) -%}
+  <h3 class="highlighted">
+    {{ post.title }}
+    <br>
+    <small>{{ post.created_at }}</small>
+  </h3>
+  <br>
+  <div class="lead">
+    {{ post.body | safe }}
+  </div>
+{%- endmacro %}
+
+
 {% macro list_view(title, href, posts, archive_mode=False,
                    glyphicon=MAIN_GLYPHICON) -%}
   {{ list_heading(title, href, archive_mode, glyphicon) }}
