@@ -4,9 +4,20 @@
 
 {% block main_body %}
 
-  <div class="col-md-6 centered">
-    {{ subsections.list_view('Blog', url_for('blog_archive'), blog_posts,
-                             archive_mode=True) }}
+  <div class="row">
+
+    {% if shown_post %}
+      <div class="col-md-7 centered">
+        {{ subsections.full_post(shown_post) }}
+      </div>
+
+    {% else %}
+      <div class="col-md-6 centered">
+        {{ subsections.list_view('Blog', url_for('blog'), posts,
+                                  archive_mode=True) }}
+      </div>
+    {% endif %}
+
   </div>
 
 {% endblock %}

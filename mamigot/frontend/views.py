@@ -14,24 +14,24 @@ def index():
                             blog_posts=blog_posts, project_posts=projects)
 
 
-def blog_archive():
-    blog_posts = api.get_posts_list('blog')
+def blog(slug=None):
+    posts_list = api.get_posts_list('blog')
 
-    return render_template('layouts/blog.html', blog_posts=blog_posts)
+    if slug:
+        try:
+            post = api.get_single_post('blog', slug)
 
+        except requests.exceptions.HTTPError:
+            return render_template('errors/404.html')
 
-def blog_post(slug):
-    try:
-        post = api.get_single_post('blog', slug)
+    else:
+        post = None
 
-    except requests.exceptions.HTTPError:
-        return render_template('errors/404.html')
-
-    return render_template('layouts/blog-post.html', post=post)
+    return render_template('layouts/blog.html', shown_post=post, posts=posts_list)
 
 
 def projects(slug=None):
-    project_posts = api.get_posts_list('projects')
+    posts_list = api.get_posts_list('projects')
 
     if slug:
         try:
@@ -41,10 +41,10 @@ def projects(slug=None):
             return render_template('errors/404.html')
 
     else: # If no slug is provided, focus on the first one
-        post = api.get_single_post('projects', project_posts[0]['slug'])
+        post = api.get_single_post('projects', posts_list[0]['slug'])
 
     return render_template('layouts/projects.html', shown_post=post,
-                            posts=project_posts)
+                            posts=posts_list)
 
 
 def resume_html():

@@ -1,14 +1,13 @@
 from mamigot.frontend import app
-from views import index, blog_archive, blog_post, \
-                  projects, resume_html, resume_pdf, ext_profile
+from views import index, blog, projects, resume_html, resume_pdf, ext_profile
 
 
 
 app.add_url_rule('/', view_func = index)
 
 
-app.add_url_rule('/blog/', view_func = blog_archive)
-app.add_url_rule('/blog/<string:slug>', view_func = blog_post)
+app.add_url_rule('/blog/', view_func = blog)
+app.add_url_rule('/blog/<string:slug>', view_func = blog)
 
 
 app.add_url_rule('/projects/', view_func = projects)
