@@ -30,11 +30,9 @@ def blog_post(slug):
     return render_template('layouts/blog-post.html', post=post)
 
 
-def projects():
-    return render_template('layouts/projects.html')
+def projects(slug=None):
+    # If no slug is provided, just focus on the first one
 
-
-def project_post(slug):
     return render_template('layouts/projects.html')
 
 
