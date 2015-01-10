@@ -1,15 +1,17 @@
 from flask import request, render_template, redirect
 import requests
-import api
+
+from mamigot.frontend import api
 
 
 
 def index():
-    blog_posts = api.get_posts_list('blog', 1)
-    project_posts = api.get_posts_list('projects', 1)
+    blog = api.get_posts_list('blog', limit=3)
+    projects = api.get_posts_list('projects', limit=3,
+                                   addl_url_params = {"highlighted":"false"})
 
-    return render_template( 'layouts/index.html',
-                            blog_posts=blog_posts, project_posts=project_posts)
+    return render_template('layouts/index.html',
+                            blog_posts=blog, project_posts=projects)
 
 
 def blog_archive():
@@ -17,20 +19,20 @@ def blog_archive():
     return render_template('layouts/blog.html')
 
 
-def blog_post():
-    return render_template('blog.html')
+def blog_post(slug):
+    return render_template('layouts/blog.html')
 
 
 def projects():
-    return render_template('projects.html')
+    return render_template('layouts/projects.html')
 
 
-def project_post():
-    return render_template('projects.html')
+def project_post(slug):
+    return render_template('layouts/projects.html')
 
 
 def resume_html():
-    return render_template('resume.html')
+    return render_template('layouts/resume.html')
 
 
 def resume_pdf():
