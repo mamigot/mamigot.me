@@ -21,57 +21,6 @@
 {%- endmacro %}
 
 
-
-{% macro list_heading(title, href, glyphicon) -%}
-
-  <div class="row">
-    <h1>
-      <div class="col-md-6">
-        <span class="glyphicon {{ glyphicon }}">&nbsp</span>
-        <a href="{{ href }}" class="undecorated-link">
-          {{ title }}
-        </a>
-      </div>
-      <div class="col-md-6">
-        {% if title == "Blog" %}
-          {{ blog_subcategories() }}
-
-        {% elif title == "Projects" %}
-          {{ projects_subcategories() }}
-
-        {% endif %}
-      </div>
-    </h1>
-  </div>
-
-{%- endmacro %}
-
-
-{% macro list_posts(title, posts) -%}
-
-  {% for post in posts %}
-    <h4>
-      {% if title == "Blog" %}
-        <a href="{{ url_for('blog_post', slug=post.slug) }}">
-          {{ post.title }}
-        </a>
-        <br>
-        <small>{{ post.created_at }}</small>
-
-      {% elif title == "Projects" %}
-        <a href="{{ url_for('project_post', slug=post.slug) }}">
-          {{ post.title }}
-        </a>
-
-      {% endif %}
-    </h4>
-
-    <h5 class="summarized_item"> {{ post.desc }} </h5>
-  {% endfor %}
-
-{%- endmacro %}
-
-
 {% macro single_heading(title, href="", anchor="", subtitle="",
                         highlighted=True, glyphicon=MAIN_GLYPHICON) %}
   <div class="row">
@@ -93,14 +42,64 @@
       </div>
     </h1>
   </div>
-
 {%- endmacro %}
 
 
-{% macro list_view(title, href, posts, glyphicon=MAIN_GLYPHICON) -%}
+{% macro list_heading(title, href, archive_mode, glyphicon) -%}
+  <div class="row">
+    <h1>
+      <div class="col-md-6">
+        <span class="glyphicon {{ glyphicon }}">&nbsp</span>
+        <a href="{{ href }}" class="undecorated-link">
+          {{ title }}
+        </a>
+      </div>
+      <div class="col-md-6">
+        {% if not archive_mode %}
+          {% if title == "Blog" %}
+            {{ blog_subcategories() }}
 
-  {{ list_heading(title, href, glyphicon) }}
+          {% elif title == "Projects" %}
+            {{ projects_subcategories() }}
+
+          {% endif %}
+
+        {% else %}
+          <small>all posts</small>
+
+        {% endif %}
+      </div>
+    </h1>
+  </div>
+{%- endmacro %}
+
+
+{% macro list_posts(title, posts) -%}
+  {% for post in posts %}
+    <h4>
+      {% if title == "Blog" %}
+        <a href="{{ url_for('blog_post', slug=post.slug) }}">
+          {{ post.title }}
+        </a>
+        <br>
+        <small>{{ post.created_at }}</small>
+
+      {% elif title == "Projects" %}
+        <a href="{{ url_for('project_post', slug=post.slug) }}">
+          {{ post.title }}
+        </a>
+
+      {% endif %}
+    </h4>
+
+    <h5 class="summarized_item"> {{ post.desc }} </h5>
+  {% endfor %}
+{%- endmacro %}
+
+
+{% macro list_view(title, href, posts, archive_mode=False,
+                   glyphicon=MAIN_GLYPHICON) -%}
+  {{ list_heading(title, href, archive_mode, glyphicon) }}
   <br>
   {{ list_posts(title, posts) }}
-
 {%- endmacro %}
