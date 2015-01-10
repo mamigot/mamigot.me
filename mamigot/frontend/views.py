@@ -31,9 +31,20 @@ def blog_post(slug):
 
 
 def projects(slug=None):
-    # If no slug is provided, just focus on the first one
+    project_posts = api.get_posts_list('projects')
 
-    return render_template('layouts/projects.html')
+    if slug:
+        try:
+            post = api.get_single_post('projects', slug)
+
+        except requests.exceptions.HTTPError:
+            return render_template('errors/404.html')
+
+    else: # If no slug is provided, focus on the first one
+        post = api.get_single_post('projects', project_posts[0]['slug'])
+
+    return render_template('layouts/projects.html', shown_post=post,
+                            posts=project_posts)
 
 
 def resume_html():

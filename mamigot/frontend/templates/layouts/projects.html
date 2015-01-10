@@ -1,0 +1,23 @@
+{% extends "layouts/_layout.html" %}
+{% import "macros/subsections.html" as subsections %}
+
+
+{% block main_body %}
+
+  <div class="col-md-10 centered">
+
+    {{ subsections.single_heading("Projects", highlighted=False) }}
+
+    <div class="col-md-8">
+      {{ subsections.full_post(shown_post) }}
+    </div>
+
+    <br>
+
+    <div class="col-md-4">
+      {{ subsections.list_posts("Projects", posts) }}
+    </div>
+
+  </div>
+
+{% endblock %}
