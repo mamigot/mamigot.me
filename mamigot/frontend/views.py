@@ -6,17 +6,18 @@ from mamigot.frontend import api
 
 
 def index():
-    blog = api.get_posts_list('blog', limit=3)
+    blog_posts = api.get_posts_list('blog', limit=3)
     projects = api.get_posts_list('projects', limit=3,
                                    addl_url_params = {"highlighted":"false"})
 
     return render_template('layouts/index.html',
-                            blog_posts=blog, project_posts=projects)
+                            blog_posts=blog_posts, project_posts=projects)
 
 
 def blog_archive():
+    blog_posts = api.get_posts_list('blog')
 
-    return render_template('layouts/blog.html')
+    return render_template('layouts/blog.html', blog_posts=blog_posts)
 
 
 def blog_post(slug):

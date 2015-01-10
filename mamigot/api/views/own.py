@@ -121,7 +121,6 @@ class PostAPI(MethodView):
 
             formatted.append( clean_item )
 
-
         return json.dumps( formatted )
 
 
