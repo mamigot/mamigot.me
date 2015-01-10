@@ -24,24 +24,20 @@ class PostAPI(MethodView):
         qset = cls.find(slug)
         if not qset: return cls.resp(404)
 
-        # Get only the fields that were specified in the URLs
-        specific_fields = request.args.get('fields')
-        if specific_fields:
-            wanted = specific_fields.split(",")
-            allowed = cls.model.get_required_fields()
-
-            chosen_fields = [w for w in wanted if w in allowed]
-            if chosen_fields:
-                qset = qset.only(*chosen_fields)
-
-            else: return cls.resp(400)
-
         # Limit the number of results
         limit = request.args.get('limit')
         if limit and limit > 0:
             qset = qset[:int(limit)] # Only the first 'limit' results
 
-        js_resp = cls.format_output(qset)
+        # Get only the fields that were specified in the URLs
+        fields = request.args.get('fields')
+        if fields:
+            wanted = fields.split(",")
+            allowed = cls.model.get_required_fields()
+
+            fields = [w for w in wanted if w in allowed]
+
+        js_resp = cls.format_output(qset, specified_fields=fields)
         return cls.resp(200, js_resp)
 
 
@@ -103,12 +99,10 @@ class PostAPI(MethodView):
 
 
     @classmethod
-    def format_output(cls, qset):
+    def format_output(cls, qset, specified_fields=None):
         '''
         Cleans a queryset (returned value from Mongo) and returns as JSON
         '''
-        qset = qset.exclude("id")
-
         # http://stackoverflow.com/questions/13230284/convert-mongodb-return-object-to-dictionary
         # http://api.mongodb.org/python/current/api/bson/son.html
         items = [ob.to_mongo().to_dict() for ob in qset]
@@ -118,8 +112,15 @@ class PostAPI(MethodView):
             # No need to expose BSON ID
             item.pop('_id', None)
 
-            item = {k:str(v) for k,v in item.iteritems()}
-            formatted.append( item )
+            clean_item = {}
+            for k,v in item.iteritems():
+                if specified_fields and k not in specified_fields:
+                    continue
+                else:
+                    clean_item[k] = str(v)
+
+            formatted.append( clean_item )
+
 
         return json.dumps( formatted )
 
