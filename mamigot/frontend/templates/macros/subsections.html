@@ -41,17 +41,25 @@
       </div>
     </h1>
   </div>
-
+  <br>
   {% for post in posts %}
-    <br>
     <h4>
-      <a href="">{{ post.title }}</a>
-      <br>
-      <small>{{ post.created_at }}</small>
+      {% if title == "Blog" %}
+        <a href="{{ url_for('blog_post', slug=post.slug) }}">
+          {{ post.title }}
+        </a>
+        <br>
+        <small>{{ post.created_at }}</small>
+
+      {% elif title == "Projects" %}
+        <a href="{{ url_for('project_post', slug=post.slug) }}">
+          {{ post.title }}
+        </a>
+
+      {% endif %}
     </h4>
-    <h5 class="summarized_item">
-      {{ post.desc }}
-    </h5>
+
+    <h5 class="summarized_item"> {{ post.desc }} </h5>
   {% endfor %}
 
 {%- endmacro %}
