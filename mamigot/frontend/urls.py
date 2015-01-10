@@ -4,14 +4,12 @@ from views import index, blog_archive, blog_post, \
                   ext_profile
 
 
-url_date = '<int:year>/<int:month>/<int:day>'
-
 
 app.add_url_rule('/', view_func = index)
 
 
 app.add_url_rule('/blog/', view_func = blog_archive)
-app.add_url_rule('/blog/' + url_date + '/<string:slug>', view_func = blog_post)
+app.add_url_rule('/blog/<string:slug>', view_func = blog_post)
 
 
 app.add_url_rule('/projects/', view_func = projects)
