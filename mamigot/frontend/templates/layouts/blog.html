@@ -1,0 +1,12 @@
+{% extends "layouts/layout.html" %}
+{% import "macros/subsections.html" as subsections %}
+
+
+{% block main_body %}
+
+  <div class="col-md-6 centered">
+    {{ subsections.list_view('Blog', url_for('blog_archive'), blog_posts,
+                             archive_mode=True) }}
+  </div>
+
+{% endblock %}
