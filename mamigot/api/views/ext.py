@@ -22,17 +22,26 @@ def linkedin(item):
 
 def github(item):
     api_name = "github"
+    kwargs = {}
+
+    # Limit the number of results
+    limit = request.args.get('limit')
+    if limit and limit > 0:
+        kwargs["limit"] = int(limit)
 
     if item == "repos" and request.method == "GET":
-        return ext_api_fetcher(api_name, item, rgithub.get_repos)
+        return ext_api_fetcher(api_name, item, rgithub.get_repos, kwargs)
 
     else: return not_supported(api_name, item, request.method)
 
 
-def ext_api_fetcher(api_name, wanted_item, fetcher_func):
+def ext_api_fetcher(api_name, wanted_item, fetcher_func, kwargs=None):
 
     if wanted_item in supported[api_name]:
-        jsresp, status = fetcher_func() #jsresp is a dict
+        if kwargs:
+            jsresp, status = fetcher_func(**kwargs)
+        else:
+            jsresp, status = fetcher_func()
 
         if status == 200: # Add meta info
             pass
