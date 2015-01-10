@@ -5,7 +5,7 @@
 {% block main_body %}
 
   <div class="col-md-6 centered">
-    {{ subsections.list_view('Blog', url_for('blog_archive'), blog_posts) }}
+    {{ subsections.list_view('Blog', url_for('blog'), blog_posts) }}
     <hr>
     {{ subsections.list_view('Projects', url_for('projects'), project_posts) }}
     <hr>

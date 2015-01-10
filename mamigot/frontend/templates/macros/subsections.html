@@ -7,7 +7,7 @@
   <small>
     <span class="highlighted">latest</span>
     |
-    <a href="{{ url_for('blog_archive') }}" class="undecorated-link">view all</a>
+    <a href="{{ url_for('blog') }}" class="undecorated-link">view all</a>
   </small>
 {%- endmacro %}
 
@@ -78,7 +78,7 @@
   {% for post in posts %}
     <h4>
       {% if title == "Blog" %}
-        <a href="{{ url_for('blog_post', slug=post.slug) }}">
+        <a href="{{ url_for('blog', slug=post.slug) }}">
           {{ post.title }}
         </a>
         <br>
