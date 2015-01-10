@@ -4,26 +4,22 @@
 
 {% block main_body %}
 
-  {% block introductory_summary %}
-    {% include 'includes/intro_summary.html' %}
-  {% endblock %}
-
   <div class="col-md-6 centered">
     {{ subsections.list_view('Blog', url_for('blog_archive'), blog_posts) }}
     <hr>
     {{ subsections.list_view('Projects', url_for('projects'), project_posts) }}
     <hr>
-    {{ subsections.single_title(title='Resume',
+    {{ subsections.single_heading(title='Resume',
                                 href= url_for('resume_html'),
                                 subtitle='(via LinkedIn\'s API)') }}
     <hr>
   </div>
 
   <div class="col-md-8 centered">
-    {{ subsections.single_title(title='Contact Me',
-                                anchor='contact',
-                                highlighted=False,
-                                glyphicon='glyphicon-envelope') }}
+    {{ subsections.single_heading(title='Contact Me',
+                                  anchor='contact',
+                                  highlighted=False,
+                                  glyphicon='glyphicon-envelope') }}
     <br>
     {% include 'includes/contact_form.html' %}
   </div>

@@ -1,6 +1,5 @@
 {% import "macros/helpers.html" as helpers %}
 
-
 {% set MAIN_GLYPHICON = 'glyphicon-chevron-right' %}
 
 
@@ -12,6 +11,7 @@
   </small>
 {%- endmacro %}
 
+
 {% macro projects_subcategories() -%}
   <small>
     <span class="highlighted">highlighted</span>
@@ -21,7 +21,9 @@
 {%- endmacro %}
 
 
-{% macro list_view(title, href, posts, glyphicon=MAIN_GLYPHICON) -%}
+
+{% macro list_heading(title, href, glyphicon) -%}
+
   <div class="row">
     <h1>
       <div class="col-md-6">
@@ -41,7 +43,12 @@
       </div>
     </h1>
   </div>
-  <br>
+
+{%- endmacro %}
+
+
+{% macro list_posts(title, posts) -%}
+
   {% for post in posts %}
     <h4>
       {% if title == "Blog" %}
@@ -64,8 +71,9 @@
 
 {%- endmacro %}
 
-{% macro single_title(title, href="", anchor="", subtitle="",
-                      highlighted=True, glyphicon=MAIN_GLYPHICON) %}
+
+{% macro single_heading(title, href="", anchor="", subtitle="",
+                        highlighted=True, glyphicon=MAIN_GLYPHICON) %}
   <div class="row">
     <h1>
       <div class="col-md-6">
@@ -85,4 +93,14 @@
       </div>
     </h1>
   </div>
+
+{%- endmacro %}
+
+
+{% macro list_view(title, href, posts, glyphicon=MAIN_GLYPHICON) -%}
+
+  {{ list_heading(title, href, glyphicon) }}
+  <br>
+  {{ list_posts(title, posts) }}
+
 {%- endmacro %}

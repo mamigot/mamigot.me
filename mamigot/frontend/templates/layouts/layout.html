@@ -42,6 +42,10 @@
     {% endblock %}
 
     <div class="container">
+      {% block introductory_summary %}
+        {% include 'includes/intro_summary.html' %}
+      {% endblock %}
+
       {% block main_body %}
       {% endblock %}
     </div>
