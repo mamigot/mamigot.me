@@ -21,7 +21,13 @@ def blog_archive():
 
 
 def blog_post(slug):
-    return render_template('layouts/blog.html')
+    try:
+        post = api.get_single_post('blog', slug)
+
+    except requests.exceptions.HTTPError:
+        return render_template('errors/404.html')
+
+    return render_template('layouts/blog-post.html', post=post)
 
 
 def projects():

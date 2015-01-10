@@ -75,4 +75,5 @@ def get_single_post(post_type, slug):
         post["created_at"] = format_date( post["created_at"] )
         post["modified_at"] = format_date( post["modified_at"] )
 
-    return js_content
+    # js_content is a list of dictionaries (even if just one)
+    return js_content[0]
