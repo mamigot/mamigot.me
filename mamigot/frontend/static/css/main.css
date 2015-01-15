@@ -18,6 +18,9 @@
 #mikel{
   width: 100%;
 }
+.tag-line{
+  font-size: 80%;
+}
 
 .centered{
   display: block;
