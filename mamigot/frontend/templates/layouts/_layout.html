@@ -42,7 +42,12 @@
     {% endblock %}
 
     {% block header_photo %}
-      <div class="photo-block"></div>
+      <div class="photo-block">
+        <div class="photo-block-title">
+          {% block header_photo_title %}
+          {% endblock %}
+        </div>
+      </div>
     {% endblock %}
 
     <div class="container">

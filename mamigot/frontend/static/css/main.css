@@ -15,6 +15,13 @@
   margin-top: -20px;
   margin-bottom: 20px;
 }
+.photo-block-title{
+  text-align: center;
+  line-height: 300px;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+}
 
 /* Introductory summary and picture */
 .intro{
