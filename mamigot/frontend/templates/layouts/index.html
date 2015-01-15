@@ -4,7 +4,7 @@
 
 {% block main_body %}
 
-  <div class="col-md-6 centered">
+  <div class="col-md-7 centered">
     {{ subsections.list_view('Blog', url_for('blog'), blog_posts) }}
     <hr>
     {{ subsections.list_view('Projects', url_for('projects'), project_posts) }}
@@ -15,8 +15,8 @@
     <hr>
   </div>
 
-  <div class="col-md-8 centered">
-    {{ subsections.single_heading(title='Contact Me',
+  <div class="col-md-7 centered">
+    {{ subsections.single_heading(title='Contact',
                                   anchor='contact',
                                   highlighted=False,
                                   glyphicon='glyphicon-envelope') }}
