@@ -7,18 +7,19 @@
   margin: -10px 0px -10px 0px;
 }
 
-.photo-block{
-  background-image: url("https://pbs.twimg.com/profile_banners/527094727/1401732787/1500x500");
-  background-size: cover;
-  background-position: center;
+#header-photo{
   height: 300px;
   margin-top: -20px;
   margin-bottom: 20px;
+  background-size: cover;
+  background-position: center;
+  background-image: none;
+  //background-image: url("https://pbs.twimg.com/profile_banners/527094727/1401732787/1500x500");
 }
-.photo-block-title{
+#header-photo-title{
   text-align: center;
   line-height: 300px;
-  font-size: 50px;
+  font-size: 55px;
   font-weight: bold;
   color: white;
 }
