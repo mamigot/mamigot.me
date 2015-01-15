@@ -7,10 +7,19 @@
   margin: -10px 0px -10px 0px;
 }
 
+.photo-block{
+  background-image: url("https://pbs.twimg.com/profile_banners/527094727/1401732787/1500x500");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
 /* Introductory summary and picture */
 .intro{
   margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   padding-bottom: 20px;
   font-size: 2.5rem;
 }
@@ -40,4 +49,14 @@
 .highlighted, .highlighted:hover{
   text-decoration: none;
   color: #337ab7;
+}
+
+.footer{
+  padding: 2% 20%;
+}
+.footer-center-col{
+  text-align: center;
+}
+.footer-right-col{
+  text-align: right;
 }

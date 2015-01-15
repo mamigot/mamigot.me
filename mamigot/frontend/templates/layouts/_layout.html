@@ -41,12 +41,22 @@
       {% include 'includes/navbar.html' %}
     {% endblock %}
 
+    {% block header_photo %}
+      <div class="photo-block"></div>
+    {% endblock %}
+
     <div class="container">
       {% block introductory_summary %}
         {% include 'includes/intro_summary.html' %}
       {% endblock %}
 
       {% block main_body %}
+      {% endblock %}
+
+      <hr>
+
+      {% block footer %}
+        {% include 'includes/footer.html' %}
       {% endblock %}
     </div>
 
