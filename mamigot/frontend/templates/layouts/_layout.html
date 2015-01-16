@@ -54,15 +54,15 @@
       {% block introductory_summary %}
         {% include 'includes/intro_summary.html' %}
       {% endblock %}
+    </div>
 
-      {% block main_body %}
-      {% endblock %}
+    {% block main_body %}
+    {% endblock %}
 
-      <hr>
-
-      {% block footer %}
-        {% include 'includes/footer.html' %}
-      {% endblock %}
+    <div class="container">
+    {% block footer %}
+    {% include 'includes/footer.html' %}
+    {% endblock %}
     </div>
 
     {% block scripts %}

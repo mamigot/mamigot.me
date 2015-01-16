@@ -1,6 +1,18 @@
 /* Apply font to entire website */
 * { font-family: 'Raleway', 'Helvetica Neue'; }
 
+.centered-block{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  float: none;
+}
+
+.undecorated-link, .undecorated-link:hover{
+  text-decoration: none;
+  color: black;
+}
+
 /* External logos on navigation bar */
 .navbar-brand-icon {
   height: 30px;
@@ -13,8 +25,8 @@
   margin-bottom: 20px;
   background-size: cover;
   background-position: center;
-  background-image: none;
-  //background-image: url("https://pbs.twimg.com/profile_banners/527094727/1401732787/1500x500");
+  //background-image: none;
+  background-image: url("https://pbs.twimg.com/profile_banners/527094727/1401732787/1500x500");
 }
 #header-photo-title{
   text-align: center;
@@ -24,39 +36,52 @@
   color: white;
 }
 
-/* Introductory summary and picture */
-.intro{
+#about-me{
   margin-top: 0px;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  font-size: 2.5rem;
+  font-size: 140%;
 }
-/* Portrait */
-#mikel{
+#mikel-portrait{
   width: 100%;
 }
-.tag-line{
-  font-size: 80%;
-}
 
-.centered{
+.data-block{
+  padding-top: 3%;
+  padding-bottom: 5%;
+}
+.nested-data-block{
+  padding: 5% 0%;
+}
+.post-item{
+  padding: 1.5% 0%;
+}
+.post-title{
+  font-weight: bold;
+}
+.title-center-lg{
   display: block;
-  margin-right: auto;
-  margin-left: auto;
-  float: none;
-}
-.summarized_item{
-  margin-left: 3%;
-}
-.undecorated-link, .undecorated-link:hover{
-  text-decoration: none;
-  color: black;
+  padding-top: 5.5%;
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 180%;
+  font-weight: bold;
 }
 
-/* Single post view */
-.highlighted, .highlighted:hover{
-  text-decoration: none;
-  color: #337ab7;
+.section-headline{
+  color: grey;
+  font-size: 90%;
+}
+.section-footline{
+  display: block;
+  color: grey;
+  font-size: 90%;
+  padding-top: 2.5%;
+}
+
+.project-thumbnail{
+  max-height: 90px;
+  border: 0 none;
 }
 
 .footer{
