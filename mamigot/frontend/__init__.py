@@ -11,8 +11,3 @@ app.config.from_object(config_vars)
 def index(path=None):
     file = app.config['BASE_DIR'] + "/static/app/index.html"
     return make_response(open(file).read())
-
-
-# Configure assets
-from assets import init_app
-init_app(app)
