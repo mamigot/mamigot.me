@@ -1,8 +1,25 @@
-{% extends "layouts/_layout.html" %}
-{% import "macros/subsections.html" as subsections %}
+{% extends "_layout.html" %}
 
 
 {% block main_body %}
+
+<div id="header-photo">
+  <div id="header-photo-title"></div>
+</div>
+
+<div class="container">
+  <div class="page-header" id="about-me">
+    <div class="row">
+      <div class="col-xs-2" id="portrait">
+        <img src="https://avatars2.githubusercontent.com/u/4607838?v=3&amp;s=460" alt="" class="img-circle" id="mikel-portrait">
+      </div>
+      <div class="col-xs-10 tag-line">
+        <p>I study Computer Science and Electrical Engineering at NYU.</p>
+        <p>I am passionate about software engineering as well as entrepreneurship and my goal is to create a product for the public good.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="col-md-8 centered-block">
@@ -47,7 +64,7 @@
     <section class="data-block">
       <span class="section-headline">PROJECTS | <a href="" class="undecorated-link">VIEW ALL</a></span>
 
-      <span class="title-center-lg">Education Technology at IBL</span>
+      <span class="title-center-lg"><a href="">Education Technology at IBL</span>
 
       <div class="row">
         <div class="col-xs-4">
