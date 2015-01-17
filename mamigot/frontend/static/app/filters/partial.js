@@ -1,4 +1,4 @@
-angular.module('main', []).
+angular.module('main').
 
   /*
   Converts a path for a partial from relative to absolute.
