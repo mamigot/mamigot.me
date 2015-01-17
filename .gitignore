@@ -2,3 +2,7 @@
 secret_credentials.py
 
 *.pyc
+
+*.pdf
+
+*.png
