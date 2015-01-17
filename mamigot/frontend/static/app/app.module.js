@@ -1,1 +1,1 @@
-var app = angular.module('main', ['partial']);
+var app = angular.module('main', []);
