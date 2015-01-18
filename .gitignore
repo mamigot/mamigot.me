@@ -6,3 +6,5 @@ secret_credentials.py
 *.pdf
 
 *.png
+
+bower_components/
