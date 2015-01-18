@@ -9,6 +9,10 @@ angular.module('main').config(['$routeProvider', '$locationProvider',
 
         .when('/blog', {
           templateUrl: 'static/app/partials/blog.html',
+        })
+
+        .otherwise({
+          templateUrl: 'static/app/partials/errors/404.html',
         });
 
         // https://docs.angularjs.org/error/$location/nobase
