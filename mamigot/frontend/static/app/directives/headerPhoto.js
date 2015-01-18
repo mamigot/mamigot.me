@@ -13,7 +13,7 @@ angular.module('main')
   .directive('headerPhoto', function(){
 
     function link(scope, element, attrs){
-      attrs.$observe('pageTitle', function(value){
+      attrs.$observe('headerTitle', function(value){
         scope.pageTitle = value ? value.toUpperCase() : "";
       })
     }
