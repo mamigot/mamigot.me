@@ -2,6 +2,8 @@
 <html lang="en" ng-app="main">
 
   <head>
+      <base href="/"> <!-- http://stackoverflow.com/a/17768999/2708484 -->
+
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,118 +22,27 @@
       <![endif]-->
 
       <link rel="stylesheet" href="/static/css/main.css">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+
+      <script src="static/bower_components/angular-route/angular-route.min.js"></script>
+
+      <script src="static/app/app.module.js"></script>
+      <script src="static/app/app.routes.js"></script>
+      <script src="static/app/filters/partial.js"></script>
+      <script src="static/app/directives/headerPhoto.js"></script>
   </head>
 
   <body>
-
     <div ng-include=" '_navbar.html' | partial "></div>
 
-    <div id="header-photo">
-      <div id="header-photo-title"></div>
-    </div>
 
-    <div ng-include=" '_aboutme.html' | partial "></div>
-
-
-    <ng-view>
-
-      <div class="container">
-        <div class="col-md-8 centered-block">
-          <section class="data-block">
-            <span class="section-headline">HIGHLIGHTED | <a href="" class="undecorated-link">VIEW ALL</a></span>
-
-            <div class="post-item">
-              <h3 class="post-title">
-                <a href="" class="undecorated-link">
-                  How to get an "A" in Chemistry
-                </a>
-                <br>
-                <small>December 12, 2014</small>
-              </h3>
-            </div>
-
-            <div class="post-item">
-              <h3 class="post-title">
-                <a href="" class="undecorated-link">
-                  Startup School online on Udacity
-                </a>
-                <br>
-                <small>October 8, 2014</small>
-              </h3>
-            </div>
-
-            <div class="post-item">
-              <h3 class="post-title">
-                <a href="" class="undecorated-link">
-                  Built using Flask and AngularJS
-                </a>
-                <br>
-                <small>December 31, 2014</small>
-              </h3>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="col-md-8 centered-block">
-          <section class="data-block">
-            <span class="section-headline">PROJECTS | <a href="" class="undecorated-link">VIEW ALL</a></span>
-
-            <span class="title-center-lg"><a href="">Education Technology at IBL</span>
-
-              <div class="row">
-                <div class="col-xs-4">
-                  <a href="#" class="thumbnail project-thumbnail">
-                    <img class="project-thumbnail" src="static/img/logos/about.png">
-                  </a>
-                </div>
-                <div class="col-xs-4">
-                  <a href="#" class="thumbnail project-thumbnail">
-                    <img class="project-thumbnail"  src="static/img/logos/iblstudios.png">
-                  </a>
-                </div>
-                <div class="col-xs-4">
-                  <a href="#" class="thumbnail project-thumbnail">
-                    <img class="project-thumbnail"  src="static/img/logos/edx.png">
-                  </a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-4">
-                  <a href="#" class="thumbnail project-thumbnail">
-                    <img class="project-thumbnail" src="static/img/logos/flask.png">
-                  </a>
-                </div>
-                <div class="col-xs-4">
-                  <a href="#" class="thumbnail project-thumbnail">
-                    <img class="project-thumbnail"  src="static/img/logos/nyu.png">
-                  </a>
-                </div>
-                <div class="col-xs-4">
-                  <a href="#" class="thumbnail project-thumbnail">
-                    <img class="project-thumbnail"  src="static/img/logos/xilinx.png">
-                  </a>
-                </div>
-              </div>
-
-            </section>
-          </div>
-        </div>
-      </div>
-
-
-      <div ng-include=" '_contact.html' | partial "></div>
-    </ng-view>
+    <div ng-view></div>
 
 
     <div ng-include=" '_footer.html' | partial "></div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
-
-    <script src="static/app/app.module.js"></script>
-    <script src="static/app/filters/partial.js"></script>
   </body>
 </html>
