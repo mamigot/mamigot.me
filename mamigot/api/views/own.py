@@ -35,7 +35,7 @@ class PostAPI(MethodView):
             wanted = fields.split(",")
             allowed = cls.model.get_required_fields()
 
-            fields = [w for w in wanted if w in allowed]
+            fields = set(wanted).intersection(allowed)
 
         js_resp = cls.format_output(qset, specified_fields=fields)
         return cls.resp(200, js_resp)
