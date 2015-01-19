@@ -38,10 +38,7 @@ def github(item):
 def ext_api_fetcher(api_name, wanted_item, fetcher_func, kwargs=None):
 
     if wanted_item in supported[api_name]:
-        if kwargs:
-            jsresp, status = fetcher_func(**kwargs)
-        else:
-            jsresp, status = fetcher_func()
+        jsresp, status = fetcher_func(**kwargs) if kwargs else fetcher_func()
 
         if status == 200: # Add meta info
             pass
