@@ -11,6 +11,10 @@ angular.module('main').config(['$routeProvider', '$locationProvider',
           templateUrl: 'static/app/partials/blog.html',
         })
 
+        .when('/blog/:year/:month/:day/:slug', {
+          templateUrl: 'static/app/partials/blog.html',
+        })
+
         .otherwise({
           templateUrl: 'static/app/partials/errors/404.html',
         });
@@ -19,5 +23,7 @@ angular.module('main').config(['$routeProvider', '$locationProvider',
         $locationProvider.html5Mode({
           enabled: true
         });
+        // https://github.com/angular/angular.js/issues/5519
+        $locationProvider.hashPrefix('!');
 
     }]);
