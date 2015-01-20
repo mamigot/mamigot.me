@@ -1,4 +1,4 @@
-var app = angular.module('main', ['ngRoute', 'blog', 'shared']);
+var app = angular.module('main', ['ngRoute', 'ngSanitize', 'blog', 'shared']);
 
 
 app.config(['$routeProvider', '$locationProvider',
