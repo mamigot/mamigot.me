@@ -4,7 +4,7 @@ angular.module('blog')
 
     return {
       restrict: 'E',
-      templateUrl: 'static/app/partials/_post-detail.html',
+      templateUrl: 'static/src/partials/_post-detail.html',
     };
 
   });

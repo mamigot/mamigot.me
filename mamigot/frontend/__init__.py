@@ -10,5 +10,5 @@ app.config.from_object(config_vars)
 @app.route('/<path:path>')
 def index(path=None):
 
-    file = app.config['BASE_DIR'] + "/static/app/index.html"
+    file = app.config['BASE_DIR'] + "/static/src/index.html"
     return make_response(open(file).read())

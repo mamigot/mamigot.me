@@ -20,7 +20,7 @@ angular.module('main')
 
     return {
       restrict: 'E',
-      templateUrl: 'static/app/partials/_header-photo.html',
+      templateUrl: 'static/src/partials/_header-photo.html',
       link: link,
     };
 

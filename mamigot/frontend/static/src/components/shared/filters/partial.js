@@ -13,7 +13,7 @@ angular.module('shared').
   filter('partial', function(){
 
     return function(relative) {
-      return "/static/app/partials/" + relative;
+      return "/static/src/partials/" + relative;
     };
 
   });

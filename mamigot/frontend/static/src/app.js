@@ -7,11 +7,11 @@ app.config(['$routeProvider', '$locationProvider',
     $routeProvider
 
     .when('/', {
-      templateUrl: 'static/app/partials/home.html',
+      templateUrl: 'static/src/partials/home.html',
     })
 
     .otherwise({
-      templateUrl: 'static/app/partials/errors/404.html',
+      templateUrl: 'static/src/partials/errors/404.html',
     });
 
     // https://docs.angularjs.org/error/$location/nobase

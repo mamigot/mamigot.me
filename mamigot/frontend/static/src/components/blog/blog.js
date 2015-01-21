@@ -8,12 +8,12 @@
       $routeProvider
 
       .when('/blog', {
-        templateUrl: 'static/app/partials/blog.html',
+        templateUrl: 'static/src/partials/blog.html',
         controller: 'BlogListCtrl',
       })
 
       .when('/blog/:slug', {
-        templateUrl: 'static/app/partials/blog.html',
+        templateUrl: 'static/src/partials/blog.html',
         controller: 'BlogDetailCtrl',
       })
 
