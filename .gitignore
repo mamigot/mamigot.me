@@ -10,3 +10,6 @@ secret_credentials.py
 bower_components/
 
 node_modules/
+
+# Not necessary to show concatenated, unminified file
+mamigot-frontend.js
