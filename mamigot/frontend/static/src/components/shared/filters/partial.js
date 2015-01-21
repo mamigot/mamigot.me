@@ -1,4 +1,4 @@
-angular.module('shared').
+angular.module('shared')
 
   /*
   Converts a path for a partial from relative to absolute.
@@ -10,7 +10,7 @@ angular.module('shared').
     With the filter:
       <div ng-include=" '_navbar.html' | partial "></div>
   */
-  filter('partial', function(){
+  .filter('partial', function(){
 
     return function(relative) {
       return "/static/src/partials/" + relative;
