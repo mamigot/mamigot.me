@@ -7,40 +7,40 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/" ng-click="navbar.selectPage('Home')">
+      <a class="navbar-brand" ng-href="/" ng-click="navbar.selectPage('Home')">
         Miguel Amigot
       </a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li ng-class="{ active: navbar.isSelected('Blog') }">
-          <a href="/blog" ng-click="navbar.selectPage('Blog')">
+          <a ng-href="/blog" ng-click="navbar.selectPage('Blog')">
             Blog
           </a>
         </li>
         <li ng-class="{ active: navbar.isSelected('Projects') }">
-          <a href="/projects" ng-click="navbar.selectPage('Projects')">
+          <a ng-href="/projects" ng-click="navbar.selectPage('Projects')">
             Projects
           </a>
         </li>
         <li ng-class="{ active: navbar.isSelected('Resume') }">
-          <a href="/resume" ng-click="navbar.selectPage('Resume')">
+          <a ng-href="/resume" ng-click="navbar.selectPage('Resume')">
             Resume
           </a>
         </li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a ng-href="/#contact">Contact</a></li>
       </ul>
       <div class="container-fluid">
         <div class="navbar-header navbar-right navbar-brand">
-          <a href="https://twitter.com/miguelamigot">
+          <a ng-href="https://twitter.com/miguelamigot">
             <img class="navbar-brand-icon" ng-src="static/img/logos/twitter.png">
-          <a href="https://github.com/miguel5">
+          <a ng-href="https://github.com/miguel5">
             <img class="navbar-brand-icon" ng-src="static/img/logos/github.png">
           </a>
-          <a href="https://linkedin.com/in/miguelamigotgonzalez">
+          <a ng-href="https://linkedin.com/in/miguelamigotgonzalez">
             <img class="navbar-brand-icon" ng-src="static/img/logos/linkedin.png">
           </a>
-          <a href="https://facebook.com/m.amigot">
+          <a ng-href="https://facebook.com/m.amigot">
             <img class="navbar-brand-icon" ng-src="static/img/logos/facebook.png">
           </a>
           </div>
