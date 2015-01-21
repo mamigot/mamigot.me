@@ -1,4 +1,4 @@
-angular.module('main')
+angular.module('shared')
 
   /*
   Sets the header photo with a title, if provided.
