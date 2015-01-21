@@ -8,3 +8,5 @@ secret_credentials.py
 *.png
 
 bower_components/
+
+node_modules/
