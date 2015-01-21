@@ -1,0 +1,20 @@
+<div ng-if="post">
+  <header-photo></header-photo>
+
+  <div class="container">
+    <div class="col-md-8 centered-block">
+      <span class="section-headline">
+        <a href="/blog" class="undecorated-link">VIEW ALL</a>
+      </span>
+    </div>
+  </div>
+
+  <blog-detail></blog-detail>
+</div>
+
+
+<div ng-if="posts">
+  <header-photo data-header-title="archive"></header-photo>
+
+  <blog-list></blog-list>
+</div>

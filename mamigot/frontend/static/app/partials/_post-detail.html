@@ -1,21 +1,15 @@
-<header-photo></header-photo>
-
 <div class="container">
-  <div class="row">
-    <div class="col-md-9 centered-block">
-      <span class="section-headline">
-        <a href="/blog" class="undecorated-link">VIEW ALL</a>
-      </span>
+  <div class="col-md-8 centered-block">
 
-      <h2>
-        {{ post.title }}
-        <br>
-        <small>{{ post.created_at }}</small>
-      </h2>
+    <h2>
+      {{ post.title }}
+      <br>
+      <small>{{ post.created_at }}</small>
+    </h2>
 
-      <section class="data-block">
-        <div ng-bind-html="post.body"></div>
-      </section>
-    </div>
+    <section class="data-block">
+      <div ng-bind-html="post.body"></div>
+    </section>
+
   </div>
 </div>
