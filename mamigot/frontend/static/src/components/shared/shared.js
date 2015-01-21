@@ -1,1 +1,5 @@
-var app = angular.module('shared', []);
+(function(){
+
+  var app = angular.module('shared', []);
+
+})();
