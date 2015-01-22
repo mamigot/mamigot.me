@@ -79,9 +79,16 @@
   padding-top: 2.5%;
 }
 
+.thumbnail{
+  border: 0px;
+}
 .project-thumbnail{
   max-height: 90px;
-  border: 0 none;
+  padding-bottom: 5px;
+  opacity: 0.5;
+}
+.project-thumbnail-active{
+  opacity: 1;
 }
 
 .footer{
