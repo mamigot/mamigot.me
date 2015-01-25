@@ -3,11 +3,19 @@
 <div ng-include=" '_aboutme.html' | partial "></div>
 
 
-<!-- MAKE THIS A DIRECTIVE -->
-<div ng-include=" '_posts-list.html' | partial "></div>
+<div class="container">
+  <div class="col-md-8 centered-block">
+    <span class="section-headline">
+      <a ng-href="/blog" class="undecorated-link">VIEW ALL</a>
+    </span>
+  </div>
+</div>
 
-<!-- MAKE THIS A DIRECTIVE -->
-<div ng-include=" '_projects-panel.html' | partial "></div>
+
+<blog-list limit=3></blog-list>
+
+
+<projects-panel></projects-panel>
 
 
 <div ng-include=" '_contact.html' | partial "></div>
