@@ -8,7 +8,7 @@ angular.module('shared')
       <header-photo></header-photo>
 
     Photo renders with "PROJECTS" written in the middle:
-      <header-photo data-page-title="Projects"></header-photo>
+      <header-photo data-header-title="Projects"></header-photo>
   */
   .directive('headerPhoto', function(){
 
