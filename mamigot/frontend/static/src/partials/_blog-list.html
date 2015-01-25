@@ -1,17 +1,17 @@
-<header-photo data-header-title="archive"></header-photo>
-
 <div class="container">
   <div class="col-md-8 centered-block">
-    <section class="data-block" ng-controller="BlogListCtrl as list">
-      <div class="post-item" ng-repeat="post in list.posts">
+    <section class="data-block">
+      <div ng-controller="BlogListCtrl as list">
 
-        <h3 class="post-title">
-          <a ng-href="" class="undecorated-link">
-            {{ post.title }}
-          </a>
-          <br>
-          <small>{{ post.created_at }}</small>
-        </h3>
+        <div class="post-item" ng-repeat="post in list.posts">
+          <h3 class="post-title">
+            <a ng-href="" class="undecorated-link">
+              {{ post.title }}
+            </a>
+            <br>
+            <small>{{ post.created_at }}</small>
+          </h3>
+        </div>
 
       </div>
     </section>
