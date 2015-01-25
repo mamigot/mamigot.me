@@ -1,7 +1,10 @@
 angular.module('blog')
 
-  .controller('BlogDetailCtrl', ['$scope', '$routeParams', '$http',
-    function($scope, $routeParams, $http){
+  .controller('BlogDetailCtrl', ['$routeParams', '$http',
+    function($routeParams, $http){
+
+      var c = this;
+      c.post = {};
 
       var slug = $routeParams.slug;
 
@@ -10,7 +13,7 @@ angular.module('blog')
         // Body HTML is automatically sanitized using ng-sanitize
         // https://docs.angularjs.org/api/ngSanitize/service/$sanitize
 
-        $scope.post = data[0];
+        c.post = data[0];
 
       });
 

@@ -1,12 +1,15 @@
 angular.module('blog')
 
-.controller('BlogListCtrl', ['$scope', '$http',
-  function($scope, $http){
+.controller('BlogListCtrl', ['$http',
+  function($http){
+
+    var c = this;
+    c.posts = {};
 
     $http.get('/api/blog/posts?fields=title,created_at')
       .success(function(data){
 
-        $scope.posts = data;
+        c.posts = data;
 
       });
 

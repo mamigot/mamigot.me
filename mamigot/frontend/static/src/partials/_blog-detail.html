@@ -1,14 +1,24 @@
+<header-photo></header-photo>
+
 <div class="container">
   <div class="col-md-8 centered-block">
+    <span class="section-headline">
+      <a ng-href="/blog" class="undecorated-link">VIEW ALL</a>
+    </span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-md-8 centered-block" ng-controller="BlogDetailCtrl as detail">
 
     <h2>
-      {{ post.title }}
+      {{ detail.post.title }}
       <br>
-      <small>{{ post.created_at }}</small>
+      <small>{{ detail.post.created_at }}</small>
     </h2>
 
-    <section class="data-block">
-      <div ng-bind-html="post.body"></div>
+    <section class="data-block lead">
+      <div ng-bind-html="detail.post.body"></div>
     </section>
 
   </div>
