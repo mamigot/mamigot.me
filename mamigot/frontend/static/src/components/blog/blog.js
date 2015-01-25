@@ -8,11 +8,14 @@
       $routeProvider
 
       .when('/blog', {
-        templateUrl: 'static/src/partials/_blog-list.html',
+        templateUrl: 'static/src/partials/blog.html',
       })
 
       .when('/blog/:slug', {
-        templateUrl: 'static/src/partials/_blog-detail.html',
+        templateUrl: 'static/src/partials/blog.html',
+        controller: function($scope, $routeParams){
+          $scope.slug = $routeParams.slug;
+        }
       })
 
     }]);
