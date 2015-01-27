@@ -39,9 +39,6 @@ class BlogPost(db.Document, Post):
 
 
 class ProjectPost(db.Document, Post):
+    thumbnail = db.StringField(max_length=255, required=True)
     body  = db.StringField(required=True)
     highlighted = db.BooleanField(required=True)
-
-
-class Image(db.Document, Post):
-    image_url = db.StringField(required=True, max_length=255)
