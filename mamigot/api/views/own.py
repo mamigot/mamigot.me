@@ -3,7 +3,7 @@ from flask.views import MethodView
 
 import datetime, json
 
-from mamigot.api.models import Post, BlogPost, ProjectPost, Image
+from mamigot.api.models import Post, BlogPost, ProjectPost
 
 
 class PostAPI(MethodView):
@@ -153,7 +153,3 @@ class ProjectPostAPI(PostAPI):
             data = data.filter(highlighted=False)
 
         return data
-
-
-class ImageAPI(PostAPI):
-    model = Image
