@@ -1,27 +1,46 @@
 angular.module('projects')
 
   .controller('ProjectsPanelCtrl',
-    ['ProjectsPanelSvce', function(ProjectsPanelSvce){
+    ['ProjectsOverviewSvce', function(ProjectsOverviewSvce){
 
-      this.projects = ProjectsPanelSvce;
+      // List of all projects (all projects are on the same level)
+      // TODO: modify the service to return a promise
+      var rawProjects = ProjectsOverviewSvce;
+      var numProjects = rawProjects.length;
 
+      // Convert list to a list of lists (one list per row)
+      this.projects = [];
+
+      var curr; var i = ctr = 0;
+      for(i = 0; i < numProjects; i++){
+        curr = rawProjects[i];
+        curr.id = i;
+
+        if(ctr == 0){
+          this.projects.push( [curr] );
+
+        } else if(ctr < 3){
+          this.projects[this.projects.length - 1].push( curr );
+        }
+
+        ctr++;
+        if(ctr == 3){ ctr = 0; } // New list
+      }
 
       this.defaultProject = this.projects[0][1];
       this.activeProject = this.defaultProject;
 
       this.selectProject = function(projectID){
-        /* TODO: improve the performance of this method */
-        var numRows = this.getNumRows();
-        var numPerRow = this.projects[0].length;
+        var i, j = 0;
+        for(i = 0; i < this.projects.length; i++){
 
-        for(var i = 0; i < numRows; i++){
+          for(j = 0; j < this.projects[i].length; j++){
 
-          var currRow = this.projects[i];
-          for(var j = 0; j < numPerRow; j++){
+            if(projectID == this.projects[i][j].id){
 
-            if(currRow[j].id == projectID){
-              this.activeProject = currRow[j];
+              this.activeProject = this.projects[i][j];
               return;
+
             }
           }
         }
@@ -39,13 +58,6 @@ angular.module('projects')
         return this.projects.length;
       }
 
-      this.getRow = function(rowNumber){
-        /* rowNumber starts at 1 */
-        if(rowNumber <= 0 || rowNumber > this.projects.length){
-          return undefined;
-        }
 
-        return this.projects[rowNumber - 1];
-      }
 
   }]);
