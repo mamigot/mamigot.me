@@ -41,4 +41,11 @@ class BlogPost(db.Document, Post):
 class ProjectPost(db.Document, Post):
     thumbnail = db.StringField(max_length=255, required=True)
     body  = db.StringField(required=True)
-    highlighted = db.BooleanField(required=True)
+    importance = db.IntField(min_value=1, required=True)
+
+    # Modify the default ordering of Post objects
+    # (it makes sense to order projects by 'preference' and then 'created_at';
+    # i.e. when two projects have the same preference the most recent one will
+    # be first)
+    meta = Post.meta
+    meta['ordering'] = ['importance', '-created_at']
