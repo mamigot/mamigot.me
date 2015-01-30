@@ -48,4 +48,4 @@ class ProjectPost(db.Document, Post):
     # i.e. when two projects have the same preference the most recent one will
     # be first)
     meta = Post.meta
-    meta['ordering'] = ['importance', '-created_at']
+    meta['ordering'] = ['-importance', '-created_at']
