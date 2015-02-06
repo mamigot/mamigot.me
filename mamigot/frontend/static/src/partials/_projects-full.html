@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="col-md-8 centered-block">
+    <section class="data-block">
+      <span class="section-headline">
+        ALL PROJECTS
+      </span>
+
+      <div ng-controller="ProjectsFullCtrl as list">
+
+        <div class="post-item" ng-repeat="project in list.projects">
+          <h2>{{ project.title }}</h2>
+
+          <section class="data-block lead">
+            <div ng-bind-html="project.body"></div>
+          </section>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
