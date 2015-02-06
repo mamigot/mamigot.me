@@ -1,6 +1,6 @@
 angular.module('projects')
 
-  .controller('GithubReposCtrl', ['$http', '$scope', function($http, $scope){
+  .controller('GithubReposCtrl', ['$http', function($http){
 
     var c = this;
     c.repos = {};
