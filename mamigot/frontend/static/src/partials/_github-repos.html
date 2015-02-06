@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="col-md-8 centered-block">
+    <section class="data-block">
+      <span class="section-headline">
+        LATEST CODE | <a href="https://github.com/miguel5" class="undecorated-link">VIEW ALL</a>
+      </span>
+
+      <div ng-controller="GithubReposCtrl as list">
+
+        <div class="post-item" ng-repeat="repo in list.repos">
+          <h3 class="post-title">
+            <a ng-href="{{ repo.html_url }}" class="undecorated-link">{{ repo.name }}</a>
+            <small>{{ repo.language }}</small>
+          </h3>
+          <p>{{ repo.description }}</p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
