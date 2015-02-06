@@ -7,7 +7,7 @@ angular.module('blog')
 
       var limitParam = $scope.limit ? "limit=" + $scope.limit : "";
 
-      $http.get('/api/blog/posts?fields=title,created_at&' + limitParam)
+      $http.get('/api/blog/posts?fields=title,slug,created_at&' + limitParam)
         .success(function(data){
 
           c.posts = data;
