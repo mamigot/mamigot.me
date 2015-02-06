@@ -29,6 +29,13 @@ def github(item):
     if limit and limit > 0:
         kwargs["limit"] = int(limit)
 
+    # Specify the order of returned repositories
+    # See available sorting criteria here:
+    # https://developer.github.com/v3/repos/
+    sort = request.args.get('sort')
+    if sort:
+        kwargs["sort"] = sort
+
     if item == "repos" and request.method == "GET":
         return ext_api_fetcher(api_name, item, rgithub.get_repos, kwargs)
 

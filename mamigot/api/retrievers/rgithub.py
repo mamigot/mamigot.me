@@ -3,9 +3,10 @@ import requests
 import secret_credentials as secret
 
 
-def get_repos(limit=None):
+def get_repos(limit=None, sort=None):
     username = secret.sgithub['username']
-    url = "https://api.github.com/users/" + username + "/repos?sort=updated"
+    sort = sort if sort else "pushed"
+    url = "https://api.github.com/users/" + username + "/repos?sort=" + sort
 
     r = requests.get(url)
     js = r.json()
