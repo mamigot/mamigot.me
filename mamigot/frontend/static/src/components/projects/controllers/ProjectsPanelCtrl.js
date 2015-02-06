@@ -11,6 +11,7 @@ angular.module('projects')
       // Convert list to a list of lists (one list per row)
       this.projects = [];
 
+      var numProjsPerRow = 3;
       var curr; var i = ctr = 0;
       for(i = 0; i < numProjects; i++){
         curr = rawProjects[i];
@@ -19,12 +20,12 @@ angular.module('projects')
         if(ctr == 0){
           this.projects.push( [curr] );
 
-        } else if(ctr < 3){
+        } else if(ctr < numProjsPerRow){
           this.projects[this.projects.length - 1].push( curr );
         }
 
         ctr++;
-        if(ctr == 3){ ctr = 0; } // New list
+        if(ctr == numProjsPerRow){ ctr = 0; } // New list
       }
 
       this.defaultProject = this.projects[0][1];

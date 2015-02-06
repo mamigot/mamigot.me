@@ -1,6 +1,7 @@
 (function(){
 
-  var app = angular.module('main', ['ngRoute', 'ngSanitize', 'blog', 'shared']);
+  var app = angular.module('main',
+    ['ngRoute', 'ngSanitize', 'blog', 'projects', 'shared']);
 
 
   app.config(['$routeProvider', '$locationProvider',
