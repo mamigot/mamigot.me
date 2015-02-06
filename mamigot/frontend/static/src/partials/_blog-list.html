@@ -1,11 +1,15 @@
 <div class="container">
   <div class="col-md-8 centered-block">
     <section class="data-block">
+      <span class="section-headline">
+        ALL POSTS
+      </span>
+
       <div ng-controller="BlogListCtrl as list">
 
         <div class="post-item" ng-repeat="post in list.posts">
           <h3 class="post-title">
-            <a ng-href="" class="undecorated-link">
+            <a ng-href="/blog/{{ post.slug }}" class="undecorated-link">
               {{ post.title }}
             </a>
             <br>
